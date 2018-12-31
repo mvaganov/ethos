@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quality Selection</title>
+    <!-- AngularJS from http://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js -->
+    <script src="angular.min.js"></script>
+    <!-- Sortable.js from http://rubaxa.github.io/Sortable/ -->
+    <script src="Sortable.js"></script>
+    <!-- ng-sortable.js from http://rubaxa.github.io/Sortable/ -->
+    <script src="ng-sortable.js"></script>
+    <script src="angular-sanitize.min.js"></script>
+    <!-- the list of qualities -->
+    <script src="qualities.js"></script>
+    <!-- the quality selection application -->
+    <script src="qualeval_common.js"></script>
+    <script src="qual.js"></script>
+    <link rel="stylesheet" type="text/css" href="qualeval_common.css">
+  </head>
+  <body class="hexbackground">
+
+    <div ng-app="valueResolution" ng-controller="valuesController">
+      <style>
+        .suggestedit {display:{{sugD}};}
+      </style>
+      <table border=0><tr><td style="vertical-align:text-top;width:600px" class="hexbackground">
+        <p style="text-align:right;">
+        <div style="position:fixed;height:100%;top:0px;left:10px;padding:0px;  ">
+          <div style="overflow:scroll;height:100%;width:540px;padding:0px; ">
+            <div class="hexbackground" style="min-height:100%;width:100%;padding=0px;">
+              <div style="padding=0px;border-style:solid;border-width:0px;border-top-width:1px;border-color:#eee;"><h3>My name is
+                <input class="userinput" id="STATE_evaluated" placeholder="<enter your name>"></input>,
+                and during the <input class="userinput" id="STATE_projectName" placeholder="<enter project name>"></input> project,</h3>
+              </div>
+              <div class="Main_List wLimit"><table class="userChoice "><tr>
+                  <td width=50% class="y bigtext">I want to be someone who</td>
+                  <td width=50% class="n bigtext">Not<br>someone who</td>
+                </tr></table>
+              </div>
+              <ul ng-sortable="opts" class="Main_List tags wLimit pickedChoices roundedLine"
+                onclick="dragTutorial()" id="userChoices">
+                <li ng-repeat="text in choices"><table class="userChoice roundedLine"><tr>
+                  <td colspan=2 style="height:5px;padding:0;text-align:left;"><i class="muted">
+                    <!--{{text[2]}}-->
+                  </i></td></tr><tr>
+                  <td class="y selected" width=50%>{{text[0]}}</td>
+                  <td><span ng-bind-html="iconsForListing(this,text[2])"></span></td>
+                  <td class="n selected" width=50%>{{text[1]}}</td>
+                </tr></table></li>
+              </ul>
+              <!-- <button ng-click="save()" class="submitbutton">(url test)</button> -->
+              <div id="evalLinkArea" style="display:none;">
+                <b>Ctrl+C or Command+C to copy the Evaluation Link below</b>
+                <input id="evalLink" style="width:460px" type="text" readonly></input>
+                <button id="evalLinkButton">Go To Evaluation!</button><br><br>
+              </div>
+              <button
+                ng-click="doEvaluation()" class="submitbutton clearbutton"><h2>Done</h2>Ready for Evaluation!</button>&nbsp;&nbsp;&nbsp;
+              <button 
+                onclick="toggleDetails()" class="submitbutton clearbutton">More Options</button>
+              <br><br><br>
+              <input type='button' class="clearbutton"
+                onclick="toggleDetailedCategories(SCOPE,this)"
+                value="[Category Options]"></button><br>
+              <div id="categoryoptions" style="display:none;"></div>
+              <div id="fastcategoryoptions" style="display:inline;"></div>
+          </div>
+          </div>
+        </div>
+      </td><td>
+      <!--
+        <div ng-repeat="(k, v) in allCategoryListing">
+          <inline ng-repeat="(key, value) in v">
+            <input type="checkbox" id="cbx_{{key}}" name="{{k}}" checked=true value="{{value}}" onclick="docheckbox(this)">{{value}}</input>
+          </inline>
+        </div>
+      -->
+        <div ng-repeat="(key, value) in categorized">
+          <div class="Main_List">
+            <div style="text-align:left;"><h2><i>
+              <!-- <img src='{{allCategoryIcons[categoryListing[key]]}}' height=32> -->
+              {{categoryListing[key]}}
+            </i></h2></div>
+            <img src='{{allCategoryIcons[categoryListing[key]]}}' style="width:256px;height:256px;margin-left:auto;margin-right:auto;display:block;position:absolute;opacity:0.25;">
+            <ul ng-sortable="opts" id="THEMAINLIST" class="Main_List tags roundedLine" 
+            style="min-height:256px;min-width:256px;">
+            <li ng-repeat="text in value">
+              <table class="t roundedLine"><tr>
+                <td class="y">{{text[0]}}</td>
+                <td class="n">{{text[1]}}</td>
+              </tr>
+              <tr class="suggestedit"><td colspan=2><input type='button' name="[{{key}},{{$index}}]"class="suggestedit(this)" onclick="suggestEdit(this)" value="Suggest Edit"></button></tr>
+              </table></li>
+            </ul>
+          </div>
+        </div>
+      </td></tr></table>
+
+<div style="position:fixed;left:0px;top:0px;bottom:0px;right:0px;background-color:rgba(0,0,0,0.5);width:100%;height:100%;display:none;" id="details" onclick="toggleDetails(this)">
+      <div style="position:fixed;left:300px;top:50px;bottom:0px;right:0px;border-radius:10px;border-style:solid;border-width:5px;border-color:#fff;opacity:1;padding:10px;width:450px;height:300px;" class="hexbackground" onclick="toggleDetails(this)">
+        <!-- -->
+        <!-- what is this? -->
+        <!-- pick randomly -->
+        <h3>To randomize choices, click
+        <button ng-click="randomizedQ()" class="submitbutton clearbutton">Randomize</button></h3>
+        <!-- extra details -->
+        <h3>While evaluating this project, people should know</h3>
+        <textarea id="STATE_consideration" class="userinput consideration"
+        placeholder="write any extra details for consideration..." rows=4></textarea>
+        <!-- Google Docs URL -->
+<!--
+        <p style="border-style:solid;border-width:1px;border-color:#fff;">Optional Google Form URL, so that you can receive results
+        <input id="STATE_gform" class="gform_Input" style="width:100%;"
+          placeholder="pre-filled Google Form URL.  (https://docs.google.com/forms/d/..."></input><br>
+        </p>
+-->
+        <div style="text-align:right;">
+<!--
+          <i>How to get a Google Form URL</i>
+          <button onclick="howToMakeGoogleForm('STATE_gform')">?</button>
+          <br><br><br>
+          onclick="SCOPE.showC=(SCOPE.showC=='')?'none':'';SCOPE.$digest();this.value=(SCOPE.showC=='')?'Hide [Category Options]':'[Category Options]';D=ByID('categoryoptions');D.style.display=(D.style.display)?'':'none';"
+-->
+          <input type='button' class="clearbutton"
+          onclick="SCOPE.sugD=(SCOPE.sugD=='')?'none':'';SCOPE.$digest();this.value=(SCOPE.sugD=='')?'Hide [Suggest Edit]':'[Suggest Edit]';;" value="[Suggest Edit]"></button>
+        </div>
+      <div>
+      <!--
+      <ol>
+        <li>Create a google form <a href="https://docs.google.com/forms/create" target="_blank">by clicking here</a></li>
+        <li>Create <u>8</u> <b>Short answer</b> questions</li>
+        <li><b>Responses</b> &#9758; <b>Get pre-filled URL</b> or <b>(&#x22ee;)</b> &#9758; <b>Get pre-filled link</b></li>
+        <li>Press Submit, Copy the link, and paste it in the field above</li>
+      </ol>
+      -->
+    </div>
+        <!-- done button -->
+        <button style="position:absolute;top:2px;right:2px;" onclick="toggleDetails()">X</button>
+        <!--
+        <button style="position:absolute;left:10px;bottom:-5px;"
+          ng-click="doEvaluation()" class="submitbutton clearbutton"><h2>Done</h2>Ready for Evaluation!</button>
+        -->
+      </div>
+</div>
+    </div>
+    <img style="position:fixed;left:0px;top:-200px;opacity:0;width:1000px;height:100px;display:none;"
+      src="touch_128.png" id="hand" />
+    <div style="position:fixed;left:619px;top:49px;width:241px;height:109px;border-radius:10px;border-style:solid;border-width:5px;opacity:0;display:none;"
+      id="demotag"></div>
+  </body>
+</html>

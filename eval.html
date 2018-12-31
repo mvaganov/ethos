@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quality Evaluation</title>
+    <!-- AngularJS -->
+    <script src="angular.min.js"></script>
+    <script src="Sortable.js"></script>
+    <script src="ng-sortable.js"></script>
+    <script src="angular-sanitize.min.js"></script>
+    <!-- the quality evaluation application -->
+    <script src="qualeval_common.js"></script>
+    <script src="qualities.js"></script>
+    <script src="eval.js"></script>
+    <link rel="stylesheet" type="text/css" href="qualeval_common.css">
+    <style>
+      .userChoice td       { onclick: "radBut(this)"; }
+      .userChoice td:hover { opacity: 1; }
+      .advChoice { display:none; }
+      .wLimit { width:800px; }
+    </style>
+  </head>
+  <body>
+
+    <div ng-app="evaluate" ng-controller="evalController">
+      <div class="Main_List wLimit">
+        {{state.consideration}}
+        <h1>Based on <u>{{state.evaluated}}'s</u> contribution to the 
+        <u>{{state.projectName}}</u> project, I 
+        <input class="userinput" id="STATE_evaluator" placeholder="<name optional>"></input>
+        think</h1>
+      </div>
+      <div class="Main_List wLimit"><table class="userChoice"><tr>
+        <td width=30% class= "y"><h2>{{state.evaluated}} acted like someone who</h2></td>
+        <td width=10% class="advChoice my">{{username}} might be someone who<br>&swarr;</td>
+        <td width=20% class="m" ><!--unsure--></td>
+        <td width=10% class="advChoice mn">{{username}} might be someone who<br>&searr;</td>
+        <td width=30% class= "n"><h2>{{state.evaluated}} acted like someone who</h2></td>
+      </tr></table></div>
+
+      <form>
+      <ul class="Main_List wLimit">
+        <li ng-repeat="text in state.choices"><table class="userChoice"><tr>
+          <td colspan=2 style="height:5px;padding:0;text-align:left;  ">
+            <!-- {{$index+1}} -->
+            <!-- <i>{{text[2]}}</i> -->
+          </td></tr><tr>
+          <td class= "y" width=30% onclick="sel(this)"           data-attributes="{{text[2]}}">
+            {{text[0]}}
+            <input type="radio" name="{{$index}}" value= "1"   id="r{{$index}}0">
+          </td>
+         <td class="my advChoice" width=10% onclick="sel(this)"  data-attributes="{{text[2]}}">
+            <input type="radio" name="{{$index}}" value= "0.5" id="r{{$index}}1">
+          </td>
+          <td class="m"  width=20% onclick="sel(this)"           data-attributes="{{text[2]}}">
+            <input type="radio" name="{{$index}}" value= "0"   id="r{{$index}}2">
+         </td>
+          <td class="mn advChoice" width=10% onclick="sel(this)" data-attributes="{{text[2]}}">
+            <input type="radio" name="{{$index}}" value="-0.5" id="r{{$index}}3">
+          </td>
+          <td class= "n" width=30% onclick="sel(this)"           data-attributes="{{text[2]}}">
+            <input type="radio" name="{{$index}}" value="-1"   id="r{{$index}}4">
+            {{text[1]}}
+          </td>
+        </tr></table></li>
+      </ul>
+      <input style="width:300px" id="gform" placeholder="(optional) google form pre-filled URL"></input>
+      <button onclick="howToMakeGoogleForm('gform')">?</button>
+      <br>
+      <button id="submit_button" ng-click="submit()" class="submitbutton">submit</button>
+      </form>
+      <!--
+      TODO add UI and functionality to suggest additional qualities, and insert ratings for those. when submitting those, put a star after or before the question 
+
+      TODO paste in additional google docs where info can be sent, and allow link to be
+      re-generated with the new google doc as part of the url.
+      -->
+    </div>
+  </body>
+</html>
