@@ -409,8 +409,8 @@ each pair should:
 	["shared resources, with fairness and justice in mind",
 	 "lied or self-victimized for favors or personal gain",
 		["community","judgement","independent"]],
-	["gave and encouraged shared ownership of resources and results",
-	 "resisted or denied peoples' input for more attention or power",
+	["gave away ownership to share resources and results",
+	 "resisted or denied peoples' input for their own ego",
 		["community","judgement","expert"]],
 //goal - what was the point of all of this?
 	["promoted trust with kept-promises and participation",
