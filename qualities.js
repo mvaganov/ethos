@@ -410,7 +410,7 @@ each pair should:
 	 "lied or self-victimized for favors or personal gain",
 		["community","judgement","independent"]],
 	["gave and encouraged shared ownership of resources and results",
-	 "resisted or denied people's input for more attention",
+	 "resisted or denied peoples' input for more attention or power",
 		["community","judgement","expert"]],
 //goal - what was the point of all of this?
 	["promoted trust with kept-promises and participation",
