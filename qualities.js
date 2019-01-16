@@ -409,7 +409,7 @@ each pair should:
 	["shared resources, with fairness and justice in mind",
 	 "lied or self-victimized for favors or personal gain",
 		["community","judgement","independent"]],
-	["encouraged shared ownership of resources and results",
+	["gave and encouraged shared ownership of resources and results",
 	 "resisted or denied people's input for more attention",
 		["community","judgement","expert"]],
 //goal - what was the point of all of this?
