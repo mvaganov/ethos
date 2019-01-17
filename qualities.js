@@ -1,3 +1,4 @@
+// Unlicense: this is submitted as Public Domain by it's author Michael Vaganov
 /*
 each category must:
 	identify important values for productive humans
