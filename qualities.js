@@ -297,7 +297,7 @@ each pair should:
 	["understood and explained things beyond requirements",
 	 "argued for recognition without understanding",
 		["understanding","achievement","independent"]],
-	["realized confidence from a repeated sense of mastery",
+	["maintained confidence with repeated displays of mastery",
 	 "was content to \'get lucky\' and not find out why",
 		["understanding","achievement","expert"]],
 //],"empathy":[
@@ -338,7 +338,7 @@ each pair should:
 	["empathized with feedback from others, validating them",
 	 "dismissed, insulted, or intimidated critics defensively",
 		["empathy","test","independent"]],
-	["radically examined results, with intentional reflection",
+	["radically reframed their perspective to understand results",
 	 "confined themselves, or others, with stereotypes or labels",
 		["empathy","test","expert"]],
 //judgement - how to respond once test results are in?
@@ -379,7 +379,7 @@ each pair should:
 	["recognized and helped organize people suited for roles",
 	 "gossiped or stereotyped",
 		["community","planning","independent"]],
-	["delegated and empowered others to plan for themselves",
+	["delegated and empowered others to plan for the group",
 	 "micromanaged or intimidated",
 		["community","planning","expert"]],
 //doing - how does the process get done?
