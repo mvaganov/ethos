@@ -13,24 +13,6 @@ each record has a dot.
 dot radius is equal to the number of votes at that score for that 'position'
 positions determines color of the dot
 dots that were suggested by others are dotted
-attribute
-	craft: blue
-	understanding: cyan
-	empathy: red
-	community: yellow
-	growth: green
-	????: magenta
-projectLifeCycle:
-	init: red
-	plan: magenta
-	doing: blue
-	test: green
-	judgement: cyan
-	goal: yellow
-maturity
-	familiar: dark gray
-	independent: light gray
-	expert: white
 labeled rectangles show the boundaries of where specitic project records are
 UI allows show/hide records of each dimension, including project name
 
@@ -45,109 +27,135 @@ records: [{
 	timestamp:{unixTime},
 	type:{string:["self","suggested"]}
 }]
+
+Sophrosyne (Greek: σωφροσύνη) is an ancient Greek concept of an ideal of excellence of character and soundness of mind, which when combined in one well-balanced individual leads to other qualities, such as temperance, moderation, prudence, purity, and self-control.
 */
 var DB_valueCategory = {
 	"craft": {
 		description: "demonstrated capacity to create or perform",
-		related:["productivity","skill"],
-		opposed:["wastefulness","ignorance"],
-		avatar:["every master crafts-person"]
+		icon:"icons/working.png",
+		color:"#0000ff",
+		avatar:["Amadeus Mozart","Nikola Tesla"],
+		big5:"conscientiousness",
+		tooMuch:["obsession","compulsion","perfectionism"],
+		tooLittle:["laziness","counter productivity","wastefulness"],
+		justRight:["productivity","skill"],
 	},
 	"understanding": {
 		description:"ability to predict through recognition of patterns", 
-		related:["thinking","thoughtfulness","problem-solving","learning"],
-		opposed:["ignorance","prejudice"],
-		avatar:["Sherlock Holmes"]
+		icon:"icons/understanding.png",
+		color:"#00ffff",
+		avatar:["Sherlock Holmes","Socrates"],
+		big5:"stable neuroticism",
+		tooMuch:["neuroticism","paranoia","nihilism"],
+		tooLittle:["ignorance","prejudice","fear"],
+		justRight:["thoughtfulness","problem-solving","knowledge"],
 	},
 	"empathy": {
 		description:"recognition and shared-experience of peoples' feelings",
-		related:["love","thoughtfulness","kindness","humility"],
-		opposed:["hate","prejudice","arrogance"],
-		avatar:["Dalai Lama"]
+		icon:"icons/empathy.png",
+		color:"#ff0000",
+		avatar:["Dalai Lama","Pope Francis"],
+		big5:"agreeableness",
+		tooMuch:["social impotence","paralysis","guilt"],
+		tooLittle:["hatred","greed","prejudice","fear"],
+		justRight:["love","kindness","humility"],
 	},
 	"community": {
 		description:"communication-with and organization-of people",
-		related:["community","empathy","communication"],
-		opposed:["slavery","isolation"],
-		avatar:["Abe Lincoln"]
+		icon:"icons/community.png",
+		color:"#ffff00",
+		avatar:["Abe Lincoln", "George Washington"],
+		big5:"extraversion",
+		tooMuch:["tyranny","arrogance"],
+		tooLittle:["depression","disconnection","lack of support","isolation"],
+		justRight:["connectedness","communication"],
 	},
 	"growth": {
 		description:"evolution through trial and error",
-		related:["creativity", "persistence"],
-		opposed:["avoidance","compulsion","addiction"],
-		avatar:["Tony Robbins"]
+		icon:"icons/growth.png",
+		color:"#00ff00",
+		avatar:["Tony Robbins", "Sal Khan"],
+		big5:"openness to experience",
+		tooMuch:["hedonism","chaos","addiction"],
+		tooLittle:["boredom","retardation","gullibility","immaturity","slavery","avoidance"],
+		justRIght:["creativity", "persistence"],
+	},
+	"faith": {
+		description:"willingness to expect a future that is unsupported by facts in the present",
+		icon:"icons/faith.png",
+		color:"#ff00ff",
+		related:"hope, belief, expectation, confidence, trust, discipline, assurance, obedience, repentence",
+		avatar:["the centurion","Ghandi"],
+		big5:"conscientiousness",
+		tooMuch:["magical thinking","slavery","conspiracy-theory-ism"],
+		tooLittle:["nihilism","greed","hedonism"],
+		justRight:["purity","cleanliness","morality"]
 	},
 	"initiative": {
-//init - what starts the project?
-//plan - what shapes the project?
-//doing - how does the project get done?
-//test - how do you check if the project was a success?
-//judgement - how to respond once test results are in?
-//goal - what was the point of all of the project?
 		description:"what starts a person working on a project?",
-		related:["motivation","faith","vision"],
-		opposed:["laziness"],
+		icon:"icons/initiative.png",
+		color:"#ff0000",
 	},
 	"planning": {
 		description:"what shaped a project?",
+		icon:"icons/planning.png",
+		color:"#00ffff",
 	},
 	"doing": {
 		description:"how effort applied to get a project done?",
+		icon:"icons/implementation.png",
+		color:"#0000ff",
 	},
 	"test": {
 		description:"how is the project tested for success?",
+		icon:"icons/test.png",
+		color:"#ff00ff",
 	},
 	"judgement": {
 		description:"how are results of the project considered?",
+		icon:"icons/judgement.png",
+		color:"#00ff00",
 	},
 	"achievement": {
 		description:"what are the goals of a project?",
+		icon:"icons/achieve.png",
+		color:"#ffff00",
 	},
 
 	"familiar": {
-		description:"reactive, easy to recognize with superficial tests",
+		description:"Reactive, easy to recognize with superficial tests or observation.",
+		icon:"icons/tier1.png",
+		color:"#ffffff",
 	},
 	"independent": {
-		description:"pro-active, require thoughtful observation to test",
+		description:"Pro-active, require thoughtful observation to test.",
+		icon:"icons/tier2.png",
+		color:"#888888",
 	},
 	"expert": {
-		description:"clear examples of this demand recognition and encourage personal introspection",
+		description:"Can be very hard to evaluate with certainty. Clear examples of this indicate leadership, demand recognition, and encourage personal introspection",
+		icon:"icons/tier3.png",
+		color:"#444444",
 	},
 };
 
 /* all submissions have an e-mail identifier and text box for providing rational: 
 	endorse/denounce category
 	endorse/denounce evaluation-pair
-	downvote category
-	downvote evaluation-pair
 	suggest new pair, with Ptext, Ntext, and Categories
 	suggest replacing pair Ptext, Ntext, or Categories
 	suggest new category, including description, related list, and opposed list
 */
 
 var allCategoryListing = [
-	["growth","understanding","empathy","community","craft"],
+	["growth","understanding","empathy","community","craft","faith"],
 	["initiative","planning","doing","test","judgement","achievement"],
 	["familiar","independent","expert"],
 ];
-var allCategoryIcons = {
-	growth:"icons/growth.png",
-	understanding:"icons/understanding.png",
-	empathy:"icons/empathy.png",
-	community:"icons/community.png",
-	craft:"icons/working.png",
-	initiative:"icons/initiative.png",
-	planning:"icons/planning.png",
-	doing:"icons/implementation.png",
-	test:"icons/test.png",
-	judgement:"icons/judgement.png",
-	achievement:"icons/achieve.png",
-	familiar:"icons/tier1.png",
-	independent:"icons/tier2.png",
-	expert:"icons/tier3.png"
-};
+
 var defaultCategoryListing = [
-	["growth","understanding","empathy","community","craft"],
+	["growth","understanding","empathy","community","craft","faith"],
 	["initiative","planning","doing","test","judgement","achievement"],
 	["familiar"],
 ];
@@ -157,12 +165,71 @@ var fastCategoryListing = [
 	["familiar","independent","expert"],
 ];
 
+var colorForCategory = function(scope, name) {
+	return DB_valueCategory[name].color;
+}
+
+// Converts a #ffffff hex string into an [r,g,b] array
+var h2r = function(hex) {
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return result ? [
+		parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)
+	] : null;
+};
+
+// Inverse of the above
+var r2h = function(rgb) {
+	return "#" + ((1 << 24) + (rgb[0] << 16) + (rgb[1] << 8) + rgb[2]).toString(16).slice(1);
+};
+
+// Interpolates two [r,g,b] colors and returns an [r,g,b] of the result
+// Taken from the awesome ROT.js roguelike dev library at
+// https://github.com/ondras/rot.js
+var _interpolateColor = function(color1, color2, factor) {
+	if (arguments.length < 3) { factor = 0.5; }
+	var result = color1.slice();
+	for (var i=0;i<3;i++) {
+		result[i] = Math.round(result[i] + factor*(color2[i]-color1[i]));
+	}
+	return result;
+};
+
+// TODO
+var colorForListing = function(scope, listing) {
+	// pick-apart the RGB values
+	var rgb = [];
+	for(var i = 0; i < listing.length; ++i) {
+		var colorString = colorForCategory(scope, listing[i]);
+		rgb[i] = h2r(colorString);
+	}
+	// average the colors
+	var avg = [0,0,0];
+	for(var c = 0; c < avg.length; ++c) {
+		for(var i = 0; i < rgb.length; ++i) {
+			avg[c] += rgb[i][c];
+		}
+		avg[c] /= rgb.length;
+		avg[c] = (avg[c]) | 0; // force number to integer
+	}
+	return r2h(avg);
+}
+
+var iconForListing = function(scope, name, style, iconHeight = undefined) {
+	var output = "";
+	var img = DB_valueCategory[name].icon;
+	if(img) { output += "<img src='"+img+"'";
+		if(style) { output += " style='"+style+"'"; }
+		if(iconHeight != undefined) { output += " height="+iconHeight; }
+		output += " alt='"+name+"'>";
+	}
+	return output;
+}
+
 var iconsForListing = function(scope, listing, iconHeight=32) {
 	var output = "";
 	if(listing && listing.length && listing.length > 0) {
 		for(var i = 0; i < listing.length; ++i) {
-			var img = allCategoryIcons[listing[i]];
-			if(img) { output += "<img src='"+img+"' height="+iconHeight+" alt='"+listing[i]+"'>"; }
+			output += iconForListing(scope, listing[i], null, iconHeight);
 		}
 	}
 	return output;
@@ -217,7 +284,7 @@ each pair should:
 	["tried to solve problems right as they showed up",
 	 "let problems grow in size",
 		["growth","test","independent"]],
-	["examined themselves, with meditation or journaling", // TODO
+	["examined themselves, with meditation or journaling",
 	 "confined themselves, with stereotypes or labels",
 		["growth","test","expert"]],
 //judgement - how to respond once test results are in?
@@ -232,7 +299,7 @@ each pair should:
 		["growth","judgement","expert"]],
 //goal - what was the point of all of this?
 	["improved themselves with new experiences",
-	 "avoided new experiences",
+	 "avoided new experiences, even despite evidence of benefits",
 		["growth","achievement","familiar"]],
 	["acknowledged others' help and took ownership of failures",
 	 "took-credit-for and blamed-failure-on other circumstances",
@@ -248,12 +315,12 @@ each pair should:
 	["brainstormed, researched, or looked-for-inspiration",
 	 "plagarized, took credit for work without understanding it",
 		["understanding","initiative","independent"]],
-	["was motivated consistently, by passion or purpose",
+	["was motivated consistently, by passion, purpose, or vision",
 	 "lost motivation and never renewed it",
 		["understanding","initiative","expert"]],
 //plan - what shapes the process?
-	["wrote ideas down as lists to do or notes consider",
-	 "assumed their idea was complete and didn't write it out",
+	["wrote-down-lists-of (or remembered) ideas to consider later",
+	 "assumed their ideas are complete and didn't follow up on them",
 		["understanding","planning","familiar"]],
 	["prepared for risks and coordinated for success",
 	 "forgot commitments, ignored risks",
@@ -268,7 +335,7 @@ each pair should:
 	["was engaged by problem solving and learning",
 	 "was bored and constantly distracted",
 		["understanding","doing","independent"]],
-	["validated knowledge in a way that simplifed problems",
+	["improved knowledge in a way that simplifed problems",
 	 "over-complicated things",
 		["understanding","doing","expert"]],
 //test - how do you check if the process was a success?
@@ -278,8 +345,8 @@ each pair should:
 	["validated understanding with experiments and data",
 	 "avoided thinking hard or recognizing results",
 		["understanding","test","independent"]],
-	["improved public knowledge with experience",
-	 "accepted unproven mental-models", // TODO
+	["improved knowledge with good questions that expose ignorance",
+	 "accepted unproven mental-models",
 		["understanding","test","expert"]],
 //judgement - how to respond once test results are in?
 	["considered cause and effect",
@@ -298,7 +365,7 @@ each pair should:
 	["understood and explained things beyond requirements",
 	 "argued for recognition without understanding",
 		["understanding","achievement","independent"]],
-	["maintained confidence with repeated displays of mastery",
+	["exposed new questions after a confident display of mastery",
 	 "was content to \'get lucky\' and not find out why",
 		["understanding","achievement","expert"]],
 //],"empathy":[
@@ -390,8 +457,8 @@ each pair should:
 	["gave tutorials or examples showing how to do things",
 	 "didn't share helpful knowledge",
 		["community","doing","independent"]],
-	["guided others toward their independent success",
-	 "sabatoged others",
+	["guided others to their independent success, at cost to self",
+	 "sabatoged others to maintain power",
 		["community","doing","expert"]],
 //test - how do you check if the process was a success?
 	["explained expectations to others",
@@ -484,5 +551,66 @@ each pair should:
 	["achieved an elegant quality, transcending initial goals",
 	 "was unable to get past \'good enough\'",
 		["craft","achievement","expert"]],
+//],"faith":[
+//init - what starts the process?
+	["obeyed their better nature and did the right thing",
+	 "thought it would be fun to sabatoge or prank others",
+		["faith","initiative","familiar"]],
+	["had personal values to publicly live up to",
+	 "only seemed to do good, to avoid being seen as an imposter",
+		["faith","initiative","independent"]],
+	["felt personally called by something greater than themselves",
+	 "saw a personal gain to be had, and sought to get some of it",
+		["faith","initiative","expert"]],
+//plan - what shapes the process?
+	["accepted traditional approaches and best practices",
+	 "avoided trandition and best practices",
+		["faith","planning","familiar"]],
+	["obeyed best-practices even in times of hardship",
+	 "picked-and-chose the easy stuff to minimize effort",
+		["faith","planning","independent"]],
+	["gave up their own desires to achieve their values",
+	 "ignored problems to try to get what they want",
+		["faith","planning","expert"]],
+//doing - how does the process get done?
+	["kept themselves honest and clean, consistent with values",
+	 "cut corners wherever possible",
+		["faith","doing","familiar"]],
+	["kept others honest and clean, consistent with values",
+	 "avoided trying to change others",
+		["faith","doing","independent"]],
+	["became a servant to all, doing the hardest, dirtiest work",
+	 "only worked on high-profile or glamourous jobs",
+		["faith","doing","expert"]],
+//test - how do you check if the process was a success?
+	["held themselves and others to a moral standard",
+	 "exempted friends from moral standards",
+		["faith","test","familiar"]],
+	["held systems accountable to moral standards",
+	 "accepted immorality in cultures, laws, or machines",
+		["faith","test","independent"]],
+	["accepted harsh judgement on behalf of others",
+	 "made corrupt deals to avoid persecution or prosecution",
+		["faith","test","expert"]],
+//judgement - how to respond once test results are in?
+	["supported decisions with tradition, or wise texts",
+	 "ignored other experienced sources of guidance and advice",
+		["faith","judgement","familiar"]],
+	["repented and/or humbly reconciled with others",
+	 "held grudges and made enemies",
+		["faith","judgement","independent"]],
+	["made tough choices requiring significant self-sacrifice",
+	 "avoided tough choices, hoping someone else would do it",
+		["faith","judgement","expert"]],
+//goal - what was the point of all of this?
+	["acted virtuously and blamelessly",
+	 "was a liar or a hypocrite",
+		["faith","achievement","familiar"]],
+	["became a light in a dark place, providing hope to others",
+	 "lied and exploited others' ignorance",
+		["faith","achievement","independent"]],
+	["became a blessing in ways beyond reasonable expectation",
+	 "did an ok job I guess",
+		["faith","achievement","expert"]],
 //],
 ];

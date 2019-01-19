@@ -319,20 +319,32 @@ angular.module('valueResolution', ['ng-sortable', 'ngSanitize'])
     };
     doresetoptions = function(){ resetOptions($scope,$scope.categoryListing,$scope.categories); }
     $scope.sugD='none';
+    $scope.iconForListing = iconForListing;
     $scope.iconsForListing = iconsForListing;
     // all of the vlaues
     $scope.allValues = qualityValues;//filterOutQualities(qualityValues,["tier2"]);
+    // add color field to qualityValues
+    for(var i = 0; i < qualityValues.length; ++i) {
+      var qualityColor = colorForListing($scope, qualityValues[i][2]);
+      qualityValues[i].push(qualityColor);
+    }
     // filtered values (default to all of them shown)
     $scope.validValues = $scope.allValues;
     // all of the categories of the values, organized by category grouping
     $scope.allCategoryListing = allCategoryListing;
     $scope.fastCategoryListing = fastCategoryListing;
-    $scope.allCategoryIcons = allCategoryIcons;
     // which category to list the values by, including the order
     $scope.categoryListing = $scope.allCategoryListing[0];
     $scope.categories = defaultCategoryListing; //clone(allCategoryListing);
     resetOptions($scope,$scope.categoryListing,$scope.categories);
     usedCategories = $scope.categories;
+    var colorCat = {};
+    for(var i in DB_valueCategory) {
+      colorCat[i] = DB_valueCategory[i].color;
+    }
+    $scope.colorOfCategory = colorCat;
+    console.log($scope.colorOfCategory);
+
     // make a clean place to save the state, which can be easily serialized into the URL
     // load data from the URL, possibly overwriting default categories
     $scope.state = loadState();
