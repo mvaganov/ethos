@@ -609,7 +609,7 @@ each pair should:
 	["acted virtuously and blamelessly",
 	 "accused others to justify their own failures",
 		["faithfulness","achievement","independent"]],
-	["became a light in a dark place, providing hope to others",
+	["became a light in a dark place, inspiring hope to others",
 	 "exploited others' ignorance",
 		["faithfulness","achievement","expert"]],
 //],
