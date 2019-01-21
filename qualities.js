@@ -610,7 +610,7 @@ each pair should:
 	 "accused others to justify their own failures",
 		["faithfulness","achievement","independent"]],
 	["became a light in a dark place, providing hope to others",
-	 "lied and exploited others' ignorance",
+	 "exploited others' ignorance",
 		["faithfulness","achievement","expert"]],
 //],
 ];
