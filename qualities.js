@@ -48,7 +48,7 @@ var DB_valueCategory = {
 		avatar:["Sherlock Holmes","Socrates"],
 		big5:"stable neuroticism",
 		tooMuch:["neuroticism","paranoia","nihilism"],
-		tooLittle:["ignorance","prejudice","fear"],
+		tooLittle:["ignorance","prejudice","fear","foolishness"],
 		justRight:["thoughtfulness","problem-solving","knowledge"],
 	},
 	"empathy": {
@@ -79,7 +79,7 @@ var DB_valueCategory = {
 		big5:"openness to experience",
 		tooMuch:["hedonism","chaos","addiction"],
 		tooLittle:["boredom","retardation","gullibility","immaturity","slavery","avoidance"],
-		justRIght:["creativity", "persistence"],
+		justRight:["creativity", "persistence"],
 	},
 	"faithfulness": {
 		description:"willingness to expect a future that is unsupported by facts in the present",
@@ -89,7 +89,7 @@ var DB_valueCategory = {
 		avatar:["the centurion","Ghandi"],
 		big5:"conscientiousness",
 		tooMuch:["magical thinking","slavery","conspiracy-theory-ism"],
-		tooLittle:["nihilism","greed","hedonism"],
+		tooLittle:["nihilism","greed","hedonism","foolishness"],
 		justRight:["purity","cleanliness","morality"]
 	},
 	"initiative": {
