@@ -85,7 +85,7 @@ var DB_valueCategory = {
 		color:"#00ff00",
 		avatar:["Tony Robbins", "Sal Khan"],
 		philisophicalContext:{
-			big5:"openness to experience",aristotle:"eunoia - goodwill",
+			big5:"openness to experience",aristotle:"arete - goodwill",
 		},
 		tooMuch:["hedonism","chaos","addiction"],
 		tooLittle:["boredom","retardation","gullibility","immaturity","slavery","avoidance"],
