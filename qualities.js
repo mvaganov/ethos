@@ -117,7 +117,7 @@ var DB_valueCategory = {
 	},
 	"planning": {
 		description:"what shaped a project?",
-		icon:"icons/planning.png",
+		icon:"icons/plan.png",
 		color:"#00ffff",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(180deg) brightness(300%);",
 	},
