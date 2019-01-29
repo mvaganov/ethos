@@ -134,7 +134,7 @@ var DB_valueCategory = {
 		color:"#ff00ff",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(300deg)",
 	},
-	"judgement": {
+	"review": {
 		description:"how are results of the project considered?",
 		icon:"icons/judgement.png",
 		color:"#00ff00",
@@ -177,13 +177,13 @@ var DB_valueCategory = {
 
 var allCategoryListing = [
 	["growth","understanding","empathy","community","craft","faithfulness"],
-	["initiative","planning","doing","test","judgement","achievement"],
+	["initiative","planning","doing","test","review","achievement"],
 	["familiar","independent","expert"],
 ];
 
 var defaultCategoryListing = [
 	["growth","understanding","empathy","community","craft","faithfulness"],
-	["initiative","planning","doing","test","judgement","achievement"],
+	["initiative","planning","doing","test","review","achievement"],
 	["familiar"],
 ];
 var fastCategoryListing = [
@@ -392,16 +392,16 @@ each pair should:
 	["examined themselves, with meditation or journaling",
 	 "confined themselves, with stereotypes or labels",
 		["growth","test","expert"]],
-//judgement - how to respond once test results are in?
+//review - a response once test results are in?
 	["learned from mistakes, expected to fix them, and kept going",
 	 "justified mistakes, avoided effort after difficulty",
-		["growth","judgement","familiar"]],
+		["growth","review","familiar"]],
 	["redeveloped goals after finding setbacks or opportunities",
 	 "ignored or deceived-others-about reality to justify actions",
-		["growth","judgement","independent"]],
+		["growth","review","independent"]],
 	["gave up things that kept them from changing-for-the-better",
 	 "held on to counter-productive habits and ideas",
-		["growth","judgement","expert"]],
+		["growth","review","expert"]],
 //goal - what was the point of all of this?
 	["improved themselves with new experiences",
 	 "avoided new experiences, even despite evidence of benefits",
@@ -453,16 +453,16 @@ each pair should:
 	["improved knowledge with good questions that expose ignorance",
 	 "accepted unproven mental-models",
 		["understanding","test","expert"]],
-//judgement - how to respond once test results are in?
+//review - a response once test results are in?
 	["considered cause and effect",
 	 "reacted impulsively, without examining consequences",
-		["understanding","judgement","familiar"]],
+		["understanding","review","familiar"]],
 	["found patterns in problems to organize and simplify them",
 	 "let every problem be unique and hard to fix",
-		   ["understanding","judgement","independent"]],
+		["understanding","review","independent"]],
 	["used outside-the-box perspectives to discover new solutions",
 	 "discounted, disbelieved, or feared unconventional ideas",
-		["understanding","judgement","expert"]],
+		["understanding","review","expert"]],
 //goal - what was the point of all of this?
 	["developed knowledge to solve problems",
 	 "avoided the mental-effort of learning and problem solving",
@@ -514,16 +514,16 @@ each pair should:
 	["radically reframed their perspective to understand results",
 	 "confined themselves, or others, with stereotypes or labels",
 		["empathy","test","expert"]],
-//judgement - how to respond once test results are in?
+//review - a response once test results are in?
 	["accepted others circumstances and opinions as valid",
 	 "ignored or denied other people's circumstances or opinions",
-		["empathy","judgement","familiar"]],
+		["empathy","review","familiar"]],
 	["recognized others with compassion and patience",
 	 "reduced people to their results, ignoring circumstances",
-		["empathy","judgement","independent"]],
-	["reworked systems to create safe spaces for others",
+		["empathy","review","independent"]],
+	["created a safe space for someone else's truth to emerge",
 	 "accepted or encouraged exploitative or unfair systems",
-		["empathy","judgement","expert"]],
+		["empathy","review","expert"]],
 //goal - what was the point of all of this?
 	["acknowleded results with gratitude and appreciation",
 	 "claimed glory or redirected blame (sore winner/loser)",
@@ -575,16 +575,16 @@ each pair should:
 	["held everyone accountable to future generations",
 	 "failed to consider consequences to future communities",
 		["community","test","expert"]],
-//judgement - how to respond once test results are in?
+//review - a response once test results are in?
 	["assisted others in brainstorming and problem solving",
 	 "demanded or threatened to get their way",
-		["community","judgement","familiar"]],
+		["community","review","familiar"]],
 	["shared resources, with fairness and justice in mind",
 	 "lied or self-victimized for favors or personal gain",
-		["community","judgement","independent"]],
+		["community","review","independent"]],
 	["gave away ownership to share resources and results",
 	 "resisted or denied peoples' input for their own ego",
-		["community","judgement","expert"]],
+		["community","review","expert"]],
 //goal - what was the point of all of this?
 	["promoted trust with kept-promises and participation",
 	 "betrayed trust with laziness unkept-promises",
@@ -636,16 +636,16 @@ each pair should:
 	["tested rigorously with fine-grained and novel experiments",
 	 "didn't consider inconsitent or new circumstances when testing",
 		["craft","test","expert"]],
-//judgement - how to respond once test results are in?
+//review - a response once test results are in?
 	["accepted guidance and advice when considering next steps",
 	 "ignored others' guidance and advice",
-		["craft","judgement","familiar"]],
+		["craft","review","familiar"]],
 	["found better outside sources for standards and techniques",
 	 "didn't get second opinions or discover best-practices",
-		["craft","judgement","independent"]],
+		["craft","review","independent"]],
 	["held self accountable to a higher standard than anyone else",
 	 "used shortcuts and accepted a loss in quality",
-		["craft","judgement","expert"]],
+		["craft","review","expert"]],
 //goal - what was the point of all of this?
 	["improved specific things",
 	 "left a mess to clean up",
@@ -697,16 +697,16 @@ each pair should:
 	["held systems and cultures accountable to moral standards",
 	 "accepted immorality in cultures, laws, or machines",
 		["faithfulness","test","expert"]],
-//judgement - how to respond once test results are in?
+//review - a response once test results are in?
 	["made and supported decisions with their own values",
 	 "ignored their own values when it was convenient",
-		["faithfulness","judgement","familiar"]],
+		["faithfulness","review","familiar"]],
 	["repented and/or humbly-reconciled with others",
 	 "held grudges or chose to make enemies",
-		["faithfulness","judgement","independent"]],
+		["faithfulness","review","independent"]],
 	["accepted (even harsh) judgement on behalf of others",
 	 "made deals to avoid persecution or prosecution",
-		["faithfulness","judgement","expert"]],
+		["faithfulness","review","expert"]],
 //goal - what was the point of all of this?
 	["succeeded in acting according to their own values",
 	 "was undisciplined, a hypocrite, or a liar",
