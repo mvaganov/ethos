@@ -42,7 +42,7 @@ var DB_valueCategory = {
 		},
 		tooMuch:["obsession","compulsion","perfectionism"],
 		tooLittle:["laziness","counter productivity","wastefulness"],
-		justRight:["productivity","skill"],
+		justRight:["productivity","skill","flow state"],
 	},
 	"understanding": {
 		description:"ability to predict through recognition of patterns", 
@@ -54,8 +54,8 @@ var DB_valueCategory = {
 			big5:"stable neuroticism",aristotle:"pronesis - wisdom",
 		},
 		tooMuch:["neuroticism","paranoia","nihilism"],
-		tooLittle:["ignorance","prejudice","fear","foolishness"],
-		justRight:["thoughtfulness","problem-solving","knowledge"],
+		tooLittle:["ignorance","prejudice","fear","foolishness","illiteracy"],
+		justRight:["thoughtfulness","problem-solving","knowledge","literacy","abstract thinking"],
 	},
 	"empathy": {
 		description:"recognition and shared-experience of peoples' feelings",
@@ -66,9 +66,9 @@ var DB_valueCategory = {
 		philisophicalContext:{
 			big5:"agreeableness",aristotle:"eunoia - self awareness",
 		},
-		tooMuch:["social impotence","paralysis","guilt"],
+		tooMuch:["guilt","social impotence","paralysis"],
 		tooLittle:["hatred","greed","prejudice","fear"],
-		justRight:["love","kindness","humility"],
+		justRight:["love","kindness","humility","second order thinking"],
 	},
 	"community": {
 		description:"communication-with and organization-of people",
@@ -80,7 +80,7 @@ var DB_valueCategory = {
 			big5:"extraversion",aristotle:"eunoia - audience awareness",
 		},
 		tooMuch:["tyranny","arrogance"],
-		tooLittle:["depression","disconnection","lack of support","isolation"],
+		tooLittle:["depression","disconnection","lack of support","isolation","violence"],
 		justRight:["connectedness","communication"],
 	},
 	"growth": {
@@ -92,23 +92,22 @@ var DB_valueCategory = {
 		philisophicalContext:{
 			big5:"openness to experience",aristotle:"arete - goodwill",
 		},
-		tooMuch:["hedonism","chaos","addiction"],
+		tooMuch:["hedonism","chaos","addiction","self deception"],
 		tooLittle:["boredom","retardation","gullibility","immaturity","slavery","avoidance"],
-		justRight:["creativity", "persistence"],
+		justRight:["creativity", "persistence","metacognition","self transcendence","repentance"],
 	},
 	"faithfulness": {
 		description:"willingness to expect a future that is unsupported by facts in the present",
 		icon:"icons/faith.png",
 		color:"#ff00ff",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(300deg)",
-		related:"hope, faith, expectation, confidence, trust, discipline, assurance, obedience, repentence",
 		avatar:["the centurion","Ghandi"],
 		philisophicalContext:{
 			big5:"conscientiousness",aristotle:"arete - virtue",
 		},
-		tooMuch:["magical thinking","slavery","conspiracy-theory-ism"],
+		tooMuch:["magical thinking","slavery","conspiracy-theory-ism","blind obedience"],
 		tooLittle:["nihilism","greed","hedonism","foolishness"],
-		justRight:["purity","cleanliness","morality"]
+		justRight:["faith","confidence","purity","cleanliness","morality","discipline"]
 	},
 	"initiative": {
 		description:"what starts a person working on a project?",
@@ -172,7 +171,7 @@ var DB_valueCategory = {
 	endorse/denounce evaluation-pair
 	suggest new pair, with Ptext, Ntext, and Categories
 	suggest replacing pair Ptext, Ntext, or Categories
-	suggest new category, including description, related list, and opposed list
+	suggest new category, including description, and opposed list
 */
 
 var allCategoryListing = [
