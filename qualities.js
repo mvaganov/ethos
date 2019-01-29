@@ -588,10 +588,10 @@ each pair should:
 	["promoted trust with kept-promises and participation",
 	 "betrayed trust with laziness unkept-promises",
 		["solidarity","achievement","familiar"]],
-	["brought value to outsiders, even to opponents",
-	 "divided people, especially \'with us\' and \'against us\'",
+	["created value for others, even including opponents",
+	 "hoarded value by using \'with us\' and \'against us\'",
 		["solidarity","achievement","independent"]],
-	["improved the environment beyond their community",
+	["improved an environment beyond their community, into the future",
 	 "ignored or denied impacts of actions they participated in",
 		["solidarity","achievement","expert"]],
 //],"craft":[
