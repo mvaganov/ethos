@@ -33,7 +33,7 @@ Sophrosyne (Greek: σωφροσύνη) is an ancient Greek concept of an ideal o
 var DB_valueCategory = {
 	"craft": {
 		description: "demonstrated capacity to create or perform",
-		icon:"icons/working.png",
+		icon:"icons/work.png",
 		color:"#0000ff",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(240deg)",
 		avatar:["Amadeus Mozart","Nikola Tesla"],
@@ -98,7 +98,7 @@ var DB_valueCategory = {
 	},
 	"faithfulness": {
 		description:"willingness to expect a future that is unsupported by facts in the present",
-		icon:"icons/faith.png",
+		icon:"icons/faithful.png",
 		color:"#ff00ff",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(300deg)",
 		avatar:["the centurion","Ghandi"],
@@ -123,11 +123,11 @@ var DB_valueCategory = {
 	},
 	"doing": {
 		description:"how effort applied to get a project done?",
-		icon:"icons/implementation.png",
+		icon:"icons/implement.png",
 		color:"#0000ff",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(240deg)",
 	},
-	"test": {
+	"testing": {
 		description:"how is the project tested for success?",
 		icon:"icons/test.png",
 		color:"#ff00ff",
@@ -176,13 +176,13 @@ var DB_valueCategory = {
 
 var allCategoryListing = [
 	["empathy","knowledge","craft","faithfulness","growth","solidarity"],
-	["initiative","planning","doing","test","review","achievement"],
+	["initiative","planning","doing","testing","review","achievement"],
 	["familiar","independent","expert"],
 ];
 
 var defaultCategoryListing = [
 	["empathy","knowledge","craft","faithfulness","growth","solidarity"],
-	["initiative","planning","doing","test","review","achievement"],
+	["initiative","planning","doing","testing","review","achievement"],
 	["familiar"],
 ];
 var fastCategoryListing = [
@@ -382,16 +382,16 @@ each pair should:
 	["encouraged others even while being critical",
 	 "acted or said things in discouraging ways",
 		["empathy","doing","expert"]],
-//test - how do you check if the process was a success? how to get datapoints?
+//testing - how do you check if the process was a success? how to get datapoints?
 	["listened-to feedback from others, even critical feedback",
 	 "avoided or ignored feedback, except for praise",
-		["empathy","test","familiar"]],
+		["empathy","testing","familiar"]],
 	["empathized with feedback from others, validating them",
 	 "dismissed, insulted, or intimidated critics defensively",
-		["empathy","test","independent"]],
+		["empathy","testing","independent"]],
 	["radically reframed their perspective to understand results",
 	 "confined themselves, or others, with stereotypes or labels",
-		["empathy","test","expert"]],
+		["empathy","testing","expert"]],
 //review - a response once test results are in?
 	["accepted others circumstances and opinions as valid",
 	 "ignored or denied other people's circumstances or opinions",
@@ -443,16 +443,16 @@ each pair should:
 	["improved knowledge in a way that simplifed problems",
 	 "over-complicated things",
 		["knowledge","doing","expert"]],
-//test - how do you check if the process was a success?
+//testing - how do you check if the process was a success?
 	["had expectations that could be tested",
 	 "acted without expectations",
-		["knowledge","test","familiar"]],
+		["knowledge","testing","familiar"]],
 	["validated understanding with experiments and data",
 	 "avoided thinking hard or recognizing results",
-		["knowledge","test","independent"]],
+		["knowledge","testing","independent"]],
 	["improved knowledge with good questions that expose ignorance",
 	 "accepted unproven mental-models",
-		["knowledge","test","expert"]],
+		["knowledge","testing","expert"]],
 //review - a response once test results are in?
 	["considered cause and effect",
 	 "reacted impulsively, without examining consequences",
@@ -504,16 +504,16 @@ each pair should:
 	["made very difficult work look easy, after practice",
 	 "was distracted by failure and limitations",
 		["craft","doing","expert"]],
-//test - how do you check if the process was a success?
+//testing - how do you check if the process was a success?
 	["tested results properly to determine quality",
 	 "gave people results without proper testing",
-		["craft","test","familiar"]],
+		["craft","testing","familiar"]],
 	["regularly tested to find faults early",
 	 "didn't test often, hoping it \'just works\' at the end",
-		["craft","test","independent"]],
+		["craft","testing","independent"]],
 	["tested rigorously with fine-grained and novel experiments",
 	 "didn't consider inconsitent or new circumstances when testing",
-		["craft","test","expert"]],
+		["craft","testing","expert"]],
 //review - a response once test results are in?
 	["accepted guidance and advice when considering next steps",
 	 "ignored others' guidance and advice",
@@ -565,16 +565,16 @@ each pair should:
 	["became a servant, accepting difficult unglamourous work",
 	 "only worked on high-profile or glamourous jobs",
 		["faithfulness","doing","expert"]],
-//test - how do you check if the process was a success?
-	["applied standards to themselves and others",
+//testing - how do you check if the process was a success?
+	["judged others and themselves based on fair standards",
 	 "judged others based on favors instead of standards",
-		["faithfulness","test","familiar"]],
+		["faithfulness","testing","familiar"]],
 	["held values firmly, despite pressure or inconvenience",
 	 "avoided tough choices, hoping someone else would do it",
-		["faithfulness","test","independent"]],
+		["faithfulness","testing","independent"]],
 	["held systems and cultures accountable to moral standards",
 	 "accepted immorality in cultures, laws, or machines",
-		["faithfulness","test","expert"]],
+		["faithfulness","testing","expert"]],
 //review - a response once test results are in?
 	["made and supported decisions with their own values",
 	 "ignored their own values when it was convenient",
@@ -626,16 +626,16 @@ each pair should:
 	["derived satisfaction from practice, not just success",
 	 "only worked for recognition or to avoid being hassled",
 		["growth","doing","expert"]],
-//test - how do you check if the process was a success?
+//testing - how do you check if the process was a success?
 	["identified and admitted problems",
 	 "hid or denied their problems",
-		["growth","test","familiar"]],
+		["growth","testing","familiar"]],
 	["tried to solve problems right as they showed up",
 	 "let problems grow in size",
-		["growth","test","independent"]],
+		["growth","testing","independent"]],
 	["examined themselves, with meditation or journaling",
 	 "confined themselves, with stereotypes or labels",
-		["growth","test","expert"]],
+		["growth","testing","expert"]],
 //review - a response once test results are in?
 	["learned from mistakes, expected to fix them, and kept going",
 	 "justified mistakes, avoided effort after difficulty",
@@ -687,16 +687,16 @@ each pair should:
 	["guided others to their independent success, at cost to self",
 	 "sabatoged others to maintain power",
 		["solidarity","doing","expert"]],
-//test - how do you check if the process was a success?
+//testing - how do you check if the process was a success?
 	["explained expectations to others",
 	 "assumed everyone thinks the same thing",
-		["solidarity","test","familiar"]],
+		["solidarity","testing","familiar"]],
 	["kept others accountable to their commitments",
 	 "distracted others from their commitments",
-		["solidarity","test","independent"]],
+		["solidarity","testing","independent"]],
 	["held everyone accountable to future generations",
 	 "failed to consider consequences to future communities",
-		["solidarity","test","expert"]],
+		["solidarity","testing","expert"]],
 //review - a response once test results are in?
 	["assisted others in brainstorming and problem solving",
 	 "demanded or threatened to get their way",
