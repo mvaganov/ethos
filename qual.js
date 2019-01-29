@@ -321,6 +321,7 @@ angular.module('valueResolution', ['ng-sortable', 'ngSanitize'])
     $scope.sugD='none';
     $scope.iconForListing = iconForListing;
     $scope.iconsForListing = iconsForListing;
+    $scope.hex2hsl = hex2hsl;
     // all of the vlaues
     $scope.allValues = qualityValues;//filterOutQualities(qualityValues,["tier2"]);
     // add color field to qualityValues
@@ -350,6 +351,7 @@ angular.module('valueResolution', ['ng-sortable', 'ngSanitize'])
     $scope.state = loadState();
     generateCategoryChooser($scope, "categoryoptions", $scope.allCategoryListing);
     generateCategoryChooser($scope, "fastcategoryoptions", $scope.fastCategoryListing);
+    generateStylesForCategories();
     if($scope.state) {
       var state = $scope.state;
       // if there are categories or choices from the loaded state, use those.

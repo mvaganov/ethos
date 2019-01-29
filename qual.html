@@ -80,7 +80,7 @@
             <div style="text-align:left;"><h2><i>
               {{categoryListing[key]}}
             </i></h2></div>
-            <div ng-bind-html="iconForListing(this,categoryListing[key],'width:256px;height:256px;opacity:0.25;', 256)" style="width:256px;height:256px;margin-left:auto;margin-right:auto;display:block;position:absolute;opacity:0.25;"></div>
+            <div ng-bind-html="iconForListing(this,categoryListing[key],categoryListing[key], 256)" style="width:256px;height:256px;margin-left:auto;margin-right:auto;display:block;position:absolute;opacity:0.25;"></div>
             <!-- <img src='{{allCategoryIcons[categoryListing[key]]}}' style="width:256px;height:256px;margin-left:auto;margin-right:auto;display:block;position:absolute;opacity:0.25;"> -->
             <!-- <ul ng-sortable="opts" id="THEMAINLIST" class="Main_List tags roundedLine" style="min-height:256px;min-width:256px;border-color:{{colorOfCategory[categoryListing[key]]}};"> -->
             <ul ng-sortable="opts" id="THEMAINLIST" class="Main_List tags roundedLine" style="min-height:256px;min-width:256px;">

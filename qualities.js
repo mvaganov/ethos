@@ -35,6 +35,7 @@ var DB_valueCategory = {
 		description: "demonstrated capacity to create or perform",
 		icon:"icons/working.png",
 		color:"#0000ff",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(240deg)",
 		avatar:["Amadeus Mozart","Nikola Tesla"],
 		philisophicalContext:{
 			big5:"conscientiousness",aristotle:"pronesis - skill",
@@ -47,6 +48,7 @@ var DB_valueCategory = {
 		description:"ability to predict through recognition of patterns", 
 		icon:"icons/understanding.png",
 		color:"#00ffff",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(180deg) brightness(300%);",
 		avatar:["Sherlock Holmes","Socrates"],
 		philisophicalContext:{
 			big5:"stable neuroticism",aristotle:"pronesis - wisdom",
@@ -59,6 +61,7 @@ var DB_valueCategory = {
 		description:"recognition and shared-experience of peoples' feelings",
 		icon:"icons/empathy.png",
 		color:"#ff0000",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(0deg)",
 		avatar:["Dalai Lama","Pope Francis"],
 		philisophicalContext:{
 			big5:"agreeableness",aristotle:"eunoia - self awareness",
@@ -71,6 +74,7 @@ var DB_valueCategory = {
 		description:"communication-with and organization-of people",
 		icon:"icons/community.png",
 		color:"#ffff00",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(60deg) brightness(300%);",
 		avatar:["Abe Lincoln", "George Washington"],
 		philisophicalContext:{
 			big5:"extraversion",aristotle:"eunoia - audience awareness",
@@ -83,6 +87,7 @@ var DB_valueCategory = {
 		description:"evolution through trial and error",
 		icon:"icons/growth.png",
 		color:"#00ff00",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(120deg) brightness(300%);",
 		avatar:["Tony Robbins", "Sal Khan"],
 		philisophicalContext:{
 			big5:"openness to experience",aristotle:"arete - goodwill",
@@ -95,6 +100,7 @@ var DB_valueCategory = {
 		description:"willingness to expect a future that is unsupported by facts in the present",
 		icon:"icons/faith.png",
 		color:"#ff00ff",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(300deg)",
 		related:"hope, faith, expectation, confidence, trust, discipline, assurance, obedience, repentence",
 		avatar:["the centurion","Ghandi"],
 		philisophicalContext:{
@@ -108,47 +114,56 @@ var DB_valueCategory = {
 		description:"what starts a person working on a project?",
 		icon:"icons/initiative.png",
 		color:"#ff0000",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(0deg)",
 	},
 	"planning": {
 		description:"what shaped a project?",
 		icon:"icons/planning.png",
 		color:"#00ffff",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(180deg) brightness(300%);",
 	},
 	"doing": {
 		description:"how effort applied to get a project done?",
 		icon:"icons/implementation.png",
 		color:"#0000ff",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(240deg)",
 	},
 	"test": {
 		description:"how is the project tested for success?",
 		icon:"icons/test.png",
 		color:"#ff00ff",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(300deg)",
 	},
 	"judgement": {
 		description:"how are results of the project considered?",
 		icon:"icons/judgement.png",
 		color:"#00ff00",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(120deg) brightness(300%);",
 	},
 	"achievement": {
 		description:"what are the goals of a project?",
 		icon:"icons/achieve.png",
 		color:"#ffff00",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(60deg) brightness(300%);",
 	},
 
 	"familiar": {
 		description:"Reactive, easy to recognize with superficial tests or observation.",
 		icon:"icons/tier1.png",
 		color:"#ffffff",
+		iconStyle:"brightness(50%) ",
 	},
 	"independent": {
 		description:"Pro-active, require thoughtful observation to test.",
 		icon:"icons/tier2.png",
 		color:"#888888",
+		iconStyle:"brightness(25%) ",
 	},
 	"expert": {
 		description:"Can be very hard to evaluate with certainty. Clear examples of this indicate leadership, demand recognition, and encourage personal introspection",
 		icon:"icons/tier3.png",
 		color:"#444444",
+		iconStyle:"brightness(0%) ",
 	},
 };
 
@@ -177,6 +192,45 @@ var fastCategoryListing = [
 	["familiar","independent","expert"],
 ];
 
+var createStyle = function(str_cssEntry){
+	var css = str_cssEntry;//'h1 { background: red; }',
+	head = document.head || document.getElementsByTagName('head')[0],
+	style = document.createElement('style');
+	style.type = 'text/css';
+	if (style.styleSheet){
+		// This is required for IE8 and below.
+		style.styleSheet.cssText = css;
+	} else {
+		style.appendChild(document.createTextNode(css));
+	}
+	head.appendChild(style);
+}
+
+var generateStylesForCategories = function() {
+	for(var k in DB_valueCategory) {
+		var color = DB_valueCategory[k].color;
+		var hsl = hex2hsl(color);
+		// var hue;
+		hue = (360 * hsl[0]) | 0;
+		var txt = ".colorize"+k+"{";
+		// if(hsl[1] != 0) {
+		// 	txt += "filter: invert(1) "+
+		// 	"brightness(50%) "+
+		// 	"sepia(200%) "+
+		// 	"saturate(10000%) "+
+		// 	"hue-rotate("+hue+"deg) "+
+		// 	"brightness(100%) "+
+		// 	"saturate(200%)"+
+		// 	";";
+		// }
+		txt += DB_valueCategory[k].iconStyle;
+		txt += "}";
+
+		console.log(txt+"   "+DB_valueCategory[k].color+"    "+JSON.stringify(hsl)+"    "+hue);
+		createStyle(txt);
+	}
+}
+
 var colorForCategory = function(scope, name) {
 	return DB_valueCategory[name].color;
 }
@@ -193,6 +247,40 @@ var h2r = function(hex) {
 var r2h = function(rgb) {
 	return "#" + ((1 << 24) + (rgb[0] << 16) + (rgb[1] << 8) + rgb[2]).toString(16).slice(1);
 };
+
+/**
+* Converts an RGB color value to HSL. Conversion formula
+* adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+* Assumes r, g, and b are contained in the set [0, 255] and
+* returns h, s, and l in the set [0, 1].
+*
+* @param   Number  r       The red color value
+* @param   Number  g       The green color value
+* @param   Number  b       The blue color value
+* @return  Array           The HSL representation
+*/
+function rgbToHsl(r, g, b) {
+	r /= 255, g /= 255, b /= 255;
+	var max = Math.max(r, g, b), min = Math.min(r, g, b);
+	var h, s, l = (max + min) / 2;
+	if (max == min) {
+		h = s = 0; // achromatic
+	} else {
+		var d = max - min;
+		s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+		switch (max) {
+			case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+			case g: h = (b - r) / d + 2; break;
+			case b: h = (r - g) / d + 4; break;
+		}
+		h /= 6;
+	}
+	return [ h, s, l ];
+}
+function hex2hsl(str_hexcode) {
+	var rgbs = h2r(str_hexcode);
+	return rgbToHsl(rgbs[0],rgbs[1],rgbs[2]);
+}
 
 // Interpolates two [r,g,b] colors and returns an [r,g,b] of the result
 // Taken from the awesome ROT.js roguelike dev library at
@@ -226,13 +314,18 @@ var colorForListing = function(scope, listing) {
 	return r2h(avg);
 }
 
-var iconForListing = function(scope, name, style, iconHeight = undefined) {
+var iconForListing = function(scope, name, class_style, iconHeight = undefined) {
 	var output = "";
 	var img = DB_valueCategory[name].icon;
 	if(img) { output += "<img src='"+img+"'";
-		if(style) { output += " style='"+style+"'"; }
+		//"?";//class_style+";filter: invert(1) brightness(50%) sepia(100%) saturate(10000%);";
+		if(class_style != null && class_style != undefined) {
+			// class_style = "border-color:#00ff00";//";filter: invert(1) brightness(50%) sepia(100%) saturate(10000%) hue-rotate(0deg);";
+			output += " class='colorize"+class_style+"'";
+		}
 		if(iconHeight != undefined) { output += " height="+iconHeight; }
 		output += " alt='"+name+"'>";
+		console.log(output);
 	}
 	return output;
 }
@@ -241,7 +334,7 @@ var iconsForListing = function(scope, listing, iconHeight=32) {
 	var output = "";
 	if(listing && listing.length && listing.length > 0) {
 		for(var i = 0; i < listing.length; ++i) {
-			output += iconForListing(scope, listing[i], null, iconHeight);
+			output += iconForListing(scope, listing[i], listing[i], iconHeight);
 		}
 	}
 	return output;
@@ -300,10 +393,10 @@ each pair should:
 	 "confined themselves, with stereotypes or labels",
 		["growth","test","expert"]],
 //judgement - how to respond once test results are in?
-	["learned from mistakes, planned to fix them, and kept going",
+	["learned from mistakes, expected to fix them, and kept going",
 	 "justified mistakes, avoided effort after difficulty",
 		["growth","judgement","familiar"]],
-	["redeveloped goals after finding setbacks or limitations",
+	["redeveloped goals after finding setbacks or opportunities",
 	 "ignored reality of results and deceived others",
 		["growth","judgement","independent"]],
 	["found long-term value even in failure or loss",
@@ -334,8 +427,8 @@ each pair should:
 	["wrote-down-lists-of (or remembered) ideas to consider later",
 	 "assumed their ideas were complete and didn't follow up on them",
 		["understanding","planning","familiar"]],
-	["prepared for risks and coordinated for success",
-	 "forgot commitments, ignored risks",
+	["planned for risks and coordinated for success",
+	 "forgot commitments, oblivious to circumstance, ignored risks",
 		["understanding","planning","independent"]],
 	["made accurate predictions with detail-oriented analysis",
 	 "ignored details and avoided verifying assumptions",
@@ -385,10 +478,10 @@ each pair should:
 	["offered-help or accepted-help",
 	 "let others (or self) suffer alone, despite help nearby",
 		["empathy","initiative","familiar"]],
-	["listened for how others struggle, to help them",
+	["listened to how others struggle, to help them",
 	 "ignored or justified others' suffering",
 		["empathy","initiative","independent"]],
-	["searched-for and planned to help the hopeless",
+	["searched-for and aligned-themselves-with the hopeless",
 	 "made excuses-for or greedily-allowed others' suffering",
 		["empathy","initiative","expert"]],
 //plan - what shapes the process?
@@ -422,10 +515,10 @@ each pair should:
 	 "confined themselves, or others, with stereotypes or labels",
 		["empathy","test","expert"]],
 //judgement - how to respond once test results are in?
-	["applied consistent standards to themselves and everyone",
-	 "judged others based on favors instead of objective quality",
+	["accepted others circumstances and opinions as valid",
+	 "ignored or denied other people's circumstances or opinions",
 		["empathy","judgement","familiar"]],
-	["recognized others' circustances, with compassion and patience",
+	["recognized others with compassion and patience",
 	 "reduced people to their results, ignoring circumstances",
 		["empathy","judgement","independent"]],
 	["reworked systems to create safe spaces for others",
@@ -527,7 +620,7 @@ each pair should:
 	["practiced skills and focused to get results",
 	 "neglected work and looked for distractions",
 		["craft","doing","familiar"]],
-	["worked safely and/or with good technique",
+	["worked with good technique and safety",
 	 "ignored best-practices and/or safety",
 		["craft","doing","independent"]],
 	["made very difficult work look easy, after practice",
@@ -595,14 +688,14 @@ each pair should:
 	 "only worked on high-profile or glamourous jobs",
 		["faithfulness","doing","expert"]],
 //test - how do you check if the process was a success?
-	["held themselves and others to a moral standard",
-	 "exempted some people from moral standards",
+	["applied standards to themselves and others",
+	 "judged others based on favors instead of standards",
 		["faithfulness","test","familiar"]],
-	["held systems accountable to moral standards",
-	 "accepted immorality in cultures, laws, or machines",
+	["held values firmly, despite pressure and convenience",
+	 "avoided tough choices, hoping someone else would do it",
 		["faithfulness","test","independent"]],
-	["accepted harsh judgement on behalf of others",
-	 "made corrupt deals to avoid persecution or prosecution",
+	["held systems and cultures accountable to moral standards",
+	 "accepted immorality in cultures, laws, or machines",
 		["faithfulness","test","expert"]],
 //judgement - how to respond once test results are in?
 	["made and supported decisions with their own values",
@@ -611,8 +704,8 @@ each pair should:
 	["repented and/or humbly-reconciled with others",
 	 "held grudges or chose to make enemies",
 		["faithfulness","judgement","independent"]],
-	["made tough choices requiring significant self-sacrifice",
-	 "avoided tough choices, hoping someone else would do it",
+	["accepted (even harsh) judgement on behalf of others",
+	 "made deals to avoid persecution or prosecution",
 		["faithfulness","judgement","expert"]],
 //goal - what was the point of all of this?
 	["succeeded in acting according to their own values",
