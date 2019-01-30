@@ -1,3 +1,138 @@
+
+var createStyle = function(str_cssEntry){
+	var css = str_cssEntry;//'h1 { background: red; }',
+	head = document.head || document.getElementsByTagName('head')[0],
+	style = document.createElement('style');
+	style.type = 'text/css';
+	if (style.styleSheet){
+		// This is required for IE8 and below.
+		style.styleSheet.cssText = css;
+	} else {
+		style.appendChild(document.createTextNode(css));
+	}
+	head.appendChild(style);
+}
+
+var generateStylesForCategories = function() {
+	for(var k in DB_valueCategory) {
+		var color = DB_valueCategory[k].color;
+		var hsl = hex2hsl(color);
+		hue = (360 * hsl[0]) | 0;
+		var txt = ".colorize"+k+"{";
+		txt += DB_valueCategory[k].iconStyle;
+		txt += "}";
+
+		console.log(txt+"   "+DB_valueCategory[k].color+"    "+JSON.stringify(hsl)+"    "+hue);
+		createStyle(txt);
+	}
+}
+
+var colorForCategory = function(scope, name) {
+	return DB_valueCategory[name].color;
+}
+
+// Converts a #ffffff hex string into an [r,g,b] array
+var h2r = function(hex) {
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return result ? [
+		parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)
+	] : null;
+};
+
+// Inverse of the above
+var r2h = function(rgb) {
+	return "#" + ((1 << 24) + (rgb[0] << 16) + (rgb[1] << 8) + rgb[2]).toString(16).slice(1);
+};
+
+/**
+* Converts an RGB color value to HSL. Conversion formula
+* adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+* Assumes r, g, and b are contained in the set [0, 255] and
+* returns h, s, and l in the set [0, 1].
+*
+* @param   Number  r       The red color value
+* @param   Number  g       The green color value
+* @param   Number  b       The blue color value
+* @return  Array           The HSL representation
+*/
+function rgbToHsl(r, g, b) {
+	r /= 255, g /= 255, b /= 255;
+	var max = Math.max(r, g, b), min = Math.min(r, g, b);
+	var h, s, l = (max + min) / 2;
+	if (max == min) {
+		h = s = 0; // achromatic
+	} else {
+		var d = max - min;
+		s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+		switch (max) {
+			case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+			case g: h = (b - r) / d + 2; break;
+			case b: h = (r - g) / d + 4; break;
+		}
+		h /= 6;
+	}
+	return [ h, s, l ];
+}
+function hex2hsl(str_hexcode) {
+	var rgbs = h2r(str_hexcode);
+	return rgbToHsl(rgbs[0],rgbs[1],rgbs[2]);
+}
+
+// Interpolates two [r,g,b] colors and returns an [r,g,b] of the result
+// Taken from the awesome ROT.js roguelike dev library at
+// https://github.com/ondras/rot.js
+var _interpolateColor = function(color1, color2, factor) {
+	if (arguments.length < 3) { factor = 0.5; }
+	var result = color1.slice();
+	for (var i=0;i<3;i++) {
+		result[i] = Math.round(result[i] + factor*(color2[i]-color1[i]));
+	}
+	return result;
+};
+
+var colorForListing = function(scope, listing) {
+	// pick-apart the RGB values
+	var rgb = [];
+	for(var i = 0; i < listing.length; ++i) {
+		var colorString = colorForCategory(scope, listing[i]);
+		rgb[i] = h2r(colorString);
+	}
+	// average the colors
+	var avg = [0,0,0];
+	for(var c = 0; c < avg.length; ++c) {
+		for(var i = 0; i < rgb.length; ++i) {
+			avg[c] += rgb[i][c];
+		}
+		avg[c] /= rgb.length;
+		avg[c] = (avg[c]) | 0; // force number to integer
+	}
+	return r2h(avg);
+}
+
+var iconForListing = function(scope, name, class_style, iconHeight = undefined) {
+	var output = "";
+	var img = DB_valueCategory[name].icon;
+	if(img) { output += "<img src='"+img+"'";
+		if(class_style != null && class_style != undefined) {
+			output += " class='colorize"+class_style+"'";
+		}
+		if(iconHeight != undefined) { output += " height="+iconHeight; }
+		output += " alt='"+name+"'>";
+		console.log(output);
+	}
+	return output;
+}
+
+var iconsForListing = function(scope, listing, iconHeight=32) {
+	var output = "";
+	if(listing && listing.length && listing.length > 0) {
+		for(var i = 0; i < listing.length; ++i) {
+			output += iconForListing(scope, listing[i], listing[i], iconHeight);
+		}
+	}
+	return output;
+}
+
 var convertPrefilled = function(prefilledResponseURL, optionalerrorlist) {
   var expectedPrefix = "https://docs.google.com/forms/d/";
   if(!prefilledResponseURL.startsWith(expectedPrefix)){
