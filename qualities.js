@@ -31,6 +31,32 @@ records: [{
 Sophrosyne (Greek: σωφροσύνη) is an ancient Greek concept of an ideal of excellence of character and soundness of mind, which when combined in one well-balanced individual leads to other qualities, such as temperance, moderation, prudence, purity, and self-control.
 */
 var DB_valueCategory = {
+	"empathy": {
+		description:"recognition and shared-experience of peoples' feelings",
+		icon:"icons/empathy.png",
+		color:"#ff0000",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(0deg)",
+		avatar:["Dalai Lama","Pope Francis"],
+		philisophicalContext:{
+			big5:"agreeableness",aristotle:"eunoia - self awareness",
+		},
+		tooLittle:["apathy","hatred","greed","prejudice","fear"],
+		tooMuch:["guilt","social impotence","paralysis"],
+		justRight:["love","kindness","humility","second order thinking"],
+	},
+	"knowledge": {
+		description:"ability to predict through recognition of patterns", 
+		icon:"icons/understanding.png",
+		color:"#00ffff",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(180deg) brightness(300%);",
+		avatar:["Sherlock Holmes","Socrates"],
+		philisophicalContext:{
+			big5:"stable neuroticism",aristotle:"pronesis - wisdom",
+		},
+		tooLittle:["ignorance","prejudice","fear","foolishness","illiteracy"],
+		tooMuch:["neuroticism","paranoia","nihilism"],
+		justRight:["understanding","thoughtfulness","problem-solving","knowledge","literacy","abstract thinking"],
+	},
 	"craft": {
 		description: "demonstrated capacity to create or perform",
 		icon:"icons/work.png",
@@ -44,44 +70,18 @@ var DB_valueCategory = {
 		tooLittle:["laziness","counter productivity","wastefulness"],
 		justRight:["productivity","skill","flow state"],
 	},
-	"knowledge": {
-		description:"ability to predict through recognition of patterns", 
-		icon:"icons/understanding.png",
-		color:"#00ffff",
-		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(180deg) brightness(300%);",
-		avatar:["Sherlock Holmes","Socrates"],
+	"faithfulness": {
+		description:"willingness to expect a future that is unsupported by facts in the present",
+		icon:"icons/faithful.png",
+		color:"#ff00ff",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(300deg)",
+		avatar:["the centurion","Ghandi"],
 		philisophicalContext:{
-			big5:"stable neuroticism",aristotle:"pronesis - wisdom",
+			big5:"conscientiousness",aristotle:"arete - virtue",
 		},
-		tooMuch:["neuroticism","paranoia","nihilism"],
-		tooLittle:["ignorance","prejudice","fear","foolishness","illiteracy"],
-		justRight:["understanding","thoughtfulness","problem-solving","knowledge","literacy","abstract thinking"],
-	},
-	"empathy": {
-		description:"recognition and shared-experience of peoples' feelings",
-		icon:"icons/empathy.png",
-		color:"#ff0000",
-		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(0deg)",
-		avatar:["Dalai Lama","Pope Francis"],
-		philisophicalContext:{
-			big5:"agreeableness",aristotle:"eunoia - self awareness",
-		},
-		tooMuch:["guilt","social impotence","paralysis"],
-		tooLittle:["hatred","greed","prejudice","fear"],
-		justRight:["love","kindness","humility","second order thinking"],
-	},
-	"solidarity": {
-		description:"communication-with and organization-of people",
-		icon:"icons/community.png",
-		color:"#ffff00",
-		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(60deg) brightness(300%);",
-		avatar:["Abe Lincoln", "George Washington"],
-		philisophicalContext:{
-			big5:"extraversion",aristotle:"eunoia - audience awareness",
-		},
-		tooMuch:["tyranny","arrogance","chaotic instigation","cultism"],
-		tooLittle:["depression","disconnection","lack of support","isolation","violence"],
-		justRight:["community building","connectedness","communication"],
+		tooLittle:["nihilism","greed","hedonism","foolishness"],
+		tooMuch:["magical thinking","slavery","conspiracy-theory-ism","blind obedience"],
+		justRight:["trust","faith","confidence","purity","cleanliness","morality","discipline"]
 	},
 	"growth": {
 		description:"evolution through trial and error",
@@ -92,22 +92,22 @@ var DB_valueCategory = {
 		philisophicalContext:{
 			big5:"openness to experience",aristotle:"arete - goodwill",
 		},
-		tooMuch:["hedonism","chaos","addiction","self deception"],
 		tooLittle:["boredom","retardation","gullibility","immaturity","slavery","avoidance"],
+		tooMuch:["hedonism","chaos","addiction","self deception"],
 		justRight:["creativity", "persistence","metacognition","self transcendence","repentance"],
 	},
-	"faithfulness": {
-		description:"willingness to expect a future that is unsupported by facts in the present",
-		icon:"icons/faithful.png",
-		color:"#ff00ff",
-		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(300deg)",
-		avatar:["the centurion","Ghandi"],
+	"solidarity": {
+		description:"communication-with and organization-of people",
+		icon:"icons/community.png",
+		color:"#ffff00",
+		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(60deg) brightness(300%);",
+		avatar:["Abe Lincoln", "George Washington"],
 		philisophicalContext:{
-			big5:"conscientiousness",aristotle:"arete - virtue",
+			big5:"extraversion",aristotle:"eunoia - audience awareness",
 		},
-		tooMuch:["magical thinking","slavery","conspiracy-theory-ism","blind obedience"],
-		tooLittle:["nihilism","greed","hedonism","foolishness"],
-		justRight:["trust","faith","confidence","purity","cleanliness","morality","discipline"]
+		tooLittle:["depression","disconnection","lack of support","isolation","violence"],
+		tooMuch:["tyranny","arrogance","chaotic instigation","cultism"],
+		justRight:["community building","connectedness","communication","participation"],
 	},
 	"initiative": {
 		description:"what starts a person working on a project?",
@@ -252,8 +252,8 @@ each pair should:
 	["recognized others with compassion and patience",
 	 "reduced people to their results, ignoring circumstances",
 		["empathy","review","independent"]],
-	["created a safe space for someone else's truth to emerge",
-	 "accepted or encouraged exploitative or unfair systems",
+	["validated others as being just-as or more important than self",
+	 "ignored others value and claimed others' credit as their own",
 		["empathy","review","expert"]],
 //goal - what was the point of all of this?
 	["acknowleded results with gratitude and appreciation",
@@ -262,8 +262,8 @@ each pair should:
 	["supported others, even despite personal disagreement",
 	 "didn't respect people who weren't \'useful\'",
 		["empathy","achievement","independent"]],
-	["enjoyed others' success as-much-as or more-than their own",
-	 "claimed others' credit as their own",
+	["created a safe space for truth and reconciliation to emerge",
+	 "accepted or encouraged unfair treatment of people",
 		["empathy","achievement","expert"]],
 //],"knowledge":[
 //init - what starts the process?
@@ -432,21 +432,21 @@ each pair should:
 	["made and supported decisions with their own values",
 	 "ignored their own values when it was convenient",
 		["faithfulness","review","familiar"]],
-	["repented and/or humbly-reconciled with others",
+	["repented and/or  with others",
 	 "held grudges or chose to make enemies",
 		["faithfulness","review","independent"]],
 	["accepted (even harsh) judgement on behalf of others",
 	 "made deals to avoid persecution or prosecution",
 		["faithfulness","review","expert"]],
 //goal - what was the point of all of this?
-	["succeeded in acting according to their own values",
-	 "was undisciplined, a hypocrite, or a liar",
+	["kept promises and acted according to their own values",
+	 "was undisciplined, a hypocrite, a liar, or a betrayer",
 		["faithfulness","achievement","familiar"]],
 	["acted virtuously and blamelessly in success and failure",
 	 "accused others to justify their own failures",
 		["faithfulness","achievement","independent"]],
 	["became a light in a dark place, inspiring hope to others",
-	 "exploited others' ignorance",
+	 "exploited others' ignorance or weakness",
 		["faithfulness","achievement","expert"]],
 //],"growth":[
 //init - what starts the process?
@@ -561,13 +561,13 @@ each pair should:
 	 "resisted or denied peoples' input for their own ego",
 		["solidarity","review","expert"]],
 //goal - what was the point of all of this?
-	["promoted trust with kept-promises and participation",
-	 "betrayed trust with laziness unkept-promises",
+	["successfully participated in working with or for other people",
+	 "avoided trustworthy people who wanted-to help or needed help",
 		["solidarity","achievement","familiar"]],
 	["created value for others, even including opponents",
 	 "hoarded value by using \'with us\' and \'against us\'",
 		["solidarity","achievement","independent"]],
-	["improved an environment beyond their community, into the future",
+	["improved a future environment beyond their community",
 	 "ignored or denied impacts of actions they participated in",
 		["solidarity","achievement","expert"]],
 //],
