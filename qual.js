@@ -1,4 +1,7 @@
-
+/**
+* creates a stylesheet entry with the given text
+* @param {*} str_cssEntry example: 'h1 { background: red; }'
+*/
 var createStyle = function(str_cssEntry){
 	var css = str_cssEntry;//'h1 { background: red; }',
 	head = document.head || document.getElementsByTagName('head')[0],
@@ -13,6 +16,7 @@ var createStyle = function(str_cssEntry){
 	head.appendChild(style);
 }
 
+/** uses DB_valueCategory from categories.js to generate icon colorization styles */
 var generateStylesForCategories = function() {
 	for(var k in DB_valueCategory) {
 		var color = DB_valueCategory[k].color;
@@ -21,17 +25,17 @@ var generateStylesForCategories = function() {
 		var txt = ".colorize"+k+"{";
 		txt += DB_valueCategory[k].iconStyle;
 		txt += "}";
-
-		console.log(txt+"   "+DB_valueCategory[k].color+"    "+JSON.stringify(hsl)+"    "+hue);
+		//console.log(txt+"   "+DB_valueCategory[k].color+"    "+JSON.stringify(hsl)+"    "+hue);
 		createStyle(txt);
 	}
 }
 
+/** @return the color associated with the given catoegory name (scope is ignored) */
 var colorForCategory = function(scope, name) {
 	return DB_valueCategory[name].color;
 }
 
-// Converts a #ffffff hex string into an [r,g,b] array
+/** @return an [r,g,b] array converted from a #ffffff hex string */
 var h2r = function(hex) {
 	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 	return result ? [
@@ -39,7 +43,7 @@ var h2r = function(hex) {
 	] : null;
 };
 
-// Inverse of the above
+/** Inverse of h2r */
 var r2h = function(rgb) {
 	return "#" + ((1 << 24) + (rgb[0] << 16) + (rgb[1] << 8) + rgb[2]).toString(16).slice(1);
 };
@@ -73,14 +77,16 @@ function rgbToHsl(r, g, b) {
 	}
 	return [ h, s, l ];
 }
+/** @return an [h,s,l] array converted from a #ffffff hex string */
 function hex2hsl(str_hexcode) {
 	var rgbs = h2r(str_hexcode);
 	return rgbToHsl(rgbs[0],rgbs[1],rgbs[2]);
 }
 
-// Interpolates two [r,g,b] colors and returns an [r,g,b] of the result
-// Taken from the awesome ROT.js roguelike dev library at
-// https://github.com/ondras/rot.js
+/** Interpolates two [r,g,b] colors and returns an [r,g,b] of the result
+* Taken from the awesome ROT.js roguelike dev library at
+* https://github.com/ondras/rot.js
+*/ 
 var _interpolateColor = function(color1, color2, factor) {
 	if (arguments.length < 3) { factor = 0.5; }
 	var result = color1.slice();
@@ -97,32 +103,46 @@ var colorForListing = function(scope, listing) {
 		var colorString = colorForCategory(scope, listing[i]);
 		rgb[i] = h2r(colorString);
 	}
-	// average the colors
-	var avg = [0,0,0];
-	for(var c = 0; c < avg.length; ++c) {
-		for(var i = 0; i < rgb.length; ++i) {
-			avg[c] += rgb[i][c];
-		}
-		avg[c] /= rgb.length;
-		avg[c] = (avg[c]) | 0; // force number to integer
-	}
+	// // average the colors
+	// var avg = [0,0,0];
+	// for(var c = 0; c < avg.length; ++c) {
+	// 	for(var i = 0; i < rgb.length; ++i) {
+	// 		avg[c] += rgb[i][c];
+	// 	}
+	// 	avg[c] /= rgb.length;
+	// 	avg[c] = (avg[c]) | 0; // force number to integer
+  // }
+  // weight the first categories differently, to make unique colors
+  avg = _interpolateColor(rgb[0],rgb[1], 0.4);
+  avg = _interpolateColor(avg, rgb[2], 0.6);
 	return r2h(avg);
 }
 
-var iconForListing = function(scope, name, class_style, iconHeight = undefined) {
+/**
+* @param categoryName which category to get the icon for
+* @param class_style the name of the category to recolor the icon to
+* @param iconHeight if given, sets the img's height property
+* @return HTML code for the <img> for the given categoryName 
+*/
+var iconForListing = function(scope, categoryName, class_style, iconHeight = undefined) {
 	var output = "";
-	var img = DB_valueCategory[name].icon;
+	var img = DB_valueCategory[categoryName].icon;
 	if(img) { output += "<img src='"+img+"'";
 		if(class_style != null && class_style != undefined) {
 			output += " class='colorize"+class_style+"'";
 		}
 		if(iconHeight != undefined) { output += " height="+iconHeight; }
-		output += " alt='"+name+"'>";
-		console.log(output);
+		output += " alt='"+categoryName+"'>";
+		// console.log(output);
 	}
 	return output;
 }
 
+/**
+* @param scope
+* @param iconheight how tall to make the icons (in pixels)
+* @return the <img> icons for each category in listing
+*/
 var iconsForListing = function(scope, listing, iconHeight=32) {
 	var output = "";
 	if(listing && listing.length && listing.length > 0) {
@@ -230,14 +250,17 @@ var moveElementFromAtoB = function(Element, index, A, B){
 var ensureCategoryOrder = function(categories, scope){
   for(c in categories){
     var list = categories[c];
-    for(var i=0;i<list.length;++i){
+    for(var i=list.length-1;i>=0;--i){
       var entry = list[i];
       if(entry && entry[2].indexOf(scope.categoryListing[c]) < 0){
-        var trueListIndex = scope.categoryListing.indexOf(entry[3]);
-//        console.log(entry[3],"-----",trueListIndex);
-//        console.log(entry," does not belong in",scope.categoryListing[c],".... it belongs in",categories[trueListIndex]);
+        var trueListIndex = -1;// = scope.categoryListing.indexOf(entry[3]);
+        for(var d=0;d<categories.length;++d){
+          trueListIndex = scope.categoryListing.indexOf(entry[2][d]);
+          if(trueListIndex >= 0){ break; }
+        }
+      //  console.log(entry[3],"-----",trueListIndex, entry[2],scope.categoryListing);
+      //  console.log(entry," does not belong in",scope.categoryListing[c],".... it belongs in",categories[trueListIndex],trueListIndex);
         moveElementFromAtoB(entry,i,list,categories[trueListIndex])
-        --i;
       }
     }
   }
@@ -450,7 +473,9 @@ angular.module('valueResolution', ['ng-sortable', 'ngSanitize'])
 //      onRemove: function (evt){ console.log('onRemove:', [evt]); },
 //      onStart:function(evt){ console.log('onStart:', [evt]);},
 //      onSort:function(evt){ console.log('onStart:', [evt]);},
-      onEnd: function(evt){ ensureCategoryOrder($scope.categorized, $scope); }
+      onEnd: function(evt){
+        ensureCategoryOrder($scope.categorized, $scope);
+      }
     };
     doresetoptions = function(){ resetOptions($scope,$scope.categoryListing,$scope.categories); }
     $scope.sugD='none';
@@ -479,7 +504,7 @@ angular.module('valueResolution', ['ng-sortable', 'ngSanitize'])
       colorCat[i] = DB_valueCategory[i].color;
     }
     $scope.colorOfCategory = colorCat;
-    console.log($scope.colorOfCategory);
+    //console.log($scope.colorOfCategory);
 
     // make a clean place to save the state, which can be easily serialized into the URL
     // load data from the URL, possibly overwriting default categories

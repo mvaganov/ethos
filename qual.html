@@ -39,7 +39,7 @@
               </div>
               <ul ng-sortable="opts" class="Main_List tags wLimit pickedChoices roundedLine"
                 onclick="dragTutorial()" id="userChoices">
-                <li ng-repeat="text in choices"><table class="userChoice roundedLine"><tr>
+                <li ng-repeat="text in choices"><table class="userChoice roundedLine" style="border-color:{{text[3]}}"><tr>
                   <td colspan=2 style="height:5px;padding:0;text-align:left;"><i class="muted">
                     <!--{{text[2]}}-->
                   </i></td></tr><tr>
@@ -85,8 +85,8 @@
             <!-- <ul ng-sortable="opts" id="THEMAINLIST" class="Main_List tags roundedLine" style="min-height:256px;min-width:256px;border-color:{{colorOfCategory[categoryListing[key]]}};"> -->
             <ul ng-sortable="opts" id="THEMAINLIST" class="Main_List tags roundedLine" style="min-height:256px;min-width:256px;">
             <li ng-repeat="text in value">
-              <!-- <table class="t roundedLine" style="border-color:{{text[3]}}"><tr> -->
-              <table class="t roundedLine"><tr>
+              <table class="t roundedLine" style="border-color:{{text[3]}}"><tr>
+              <!-- <table class="t roundedLine"><tr> -->
                 <td class="y">{{text[0]}}</td>
                 <td class="n">{{text[1]}}</td>
               </tr>

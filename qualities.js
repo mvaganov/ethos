@@ -149,7 +149,7 @@ var DB_valueCategory = {
 	"familiar": {
 		description:"Reactive, easy to recognize with superficial tests or observation.",
 		icon:"icons/tier1.png",
-		color:"#ffffff",
+		color:"#444444",
 		iconStyle:"brightness(50%) ",
 	},
 	"independent": {
@@ -161,7 +161,7 @@ var DB_valueCategory = {
 	"expert": {
 		description:"Can be very hard to evaluate with certainty. Clear examples of this indicate leadership, demand recognition, and encourage personal introspection",
 		icon:"icons/tier3.png",
-		color:"#444444",
+		color:"#ffffff",
 		iconStyle:"brightness(0%) ",
 	},
 };
