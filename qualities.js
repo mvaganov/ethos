@@ -378,7 +378,7 @@ each pair should:
 	 "used shortcuts and accepted a loss in quality",
 		["craft","review","expert"]],
 //goal - what was the point of all of this?
-	["improved specific things",
+	["created or improved a specific thing",
 	 "left a mess to clean up",
 		["craft","achievement","familiar"]],
 	["performed well, with notable quality",
