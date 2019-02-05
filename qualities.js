@@ -367,14 +367,14 @@ each pair should:
 	["tested rigorously with fine-grained and novel experiments",
 	 "didn't consider inconsitent or new circumstances when testing",
 		["craft","testing","expert"]],
-//review - a response once test results are in?
+//review - a response once test results are in? TODO these sound like Faithfulness
 	["accepted guidance and advice when considering next steps",
 	 "ignored others' guidance and advice",
 		["craft","review","familiar"]],
-	["found better outside sources for standards and techniques",
-	 "didn't get second opinions or discover best-practices",
+	["improved their own tools or techniques to improve quality",
+	 "didn't change their tools or practices to improve quality",
 		["craft","review","independent"]],
-	["held self accountable to a higher standard than anyone else",
+	["held self accountable to a finer precision than anyone else",
 	 "used shortcuts and accepted a loss in quality",
 		["craft","review","expert"]],
 //goal - what was the point of all of this?
@@ -429,7 +429,7 @@ each pair should:
 	 "accepted or ignored immorality in cultures, laws, or machines",
 		["faithfulness","testing","expert"]],
 //review - a response once test results are in?
-	["made and supported fair decisions with their own values",
+	["made fair decisions with their own values",
 	 "ignored their own values to make convenient decisions",
 		["faithfulness","review","familiar"]],
 	["applied values consistently despite pressure or inconvenience",
@@ -551,13 +551,13 @@ each pair should:
 	 "failed to consider consequences to future communities",
 		["solidarity","testing","expert"]],
 //review - a response once test results are in?
-	["assisted others in brainstorming and problem solving",
+	["assisted others in brainstorming and problem solving", // TODO plan?
 	 "demanded or threatened to get their way",
 		["solidarity","review","familiar"]],
 	["shared resources, with fairness and justice in mind",
 	 "lied or self-victimized for favors or personal gain",
 		["solidarity","review","independent"]],
-	["gave away ownership to share resources and results",
+	["gave away ownership so others would better understand results",
 	 "resisted or denied peoples' input for their own ego",
 		["solidarity","review","expert"]],
 //goal - what was the point of all of this?
