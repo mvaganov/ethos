@@ -226,7 +226,7 @@ each pair should:
 	 "deceived others to pacify them",
 		["empathy","planning","expert"]],
 //doing - how does the process get done?
-	["spoke politely and honestly",
+	["acted and spoke politely and honestly",
 	 "was rude, exaggerated, or withheld information",
 		["empathy","doing","familiar"]],
 	["communicated and acted to improve others' feelings",
@@ -247,7 +247,7 @@ each pair should:
 		["empathy","testing","expert"]],
 //review - a response once test results are in?
 	["accepted others circumstances and opinions as valid",
-	 "reduced people to their results, ignoring/denying effort",
+	 "reduced people to their results, ignoring their circumstances",
 		["empathy","review","familiar"]],
 	["recognized others with compassion and patience",
 	 "divided people competitively, holding grudges",
@@ -562,7 +562,7 @@ each pair should:
 		["solidarity","review","expert"]],
 //goal - what was the point of all of this?
 	["successfully participated in working with or for other people",
-	 "avoided trustworthy people who wanted-to help or needed help",
+	 "avoided trustworthy people who needed or wanted-to help",
 		["solidarity","achievement","familiar"]],
 	["created value for others, even including opponents",
 	 "hoarded value by using \'with us\' and \'against us\'",
