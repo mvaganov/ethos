@@ -402,10 +402,10 @@ each pair should:
 	["adopted traditional approaches that seemed to work before",
 	 "avoided trandition or did not apply lessons from the past",
 		["faithfulness","planning","familiar"]],
-	["organized their plan around what is most important",
+	["made sure they planned to finish what is most important",
 	 "only expected to do 'the fun part'",
 		["faithfulness","planning","independent"]],
-	["sacrificed their own desires to achieve their values",
+	["sacrificed their own desires to achieve their stated values",
 	 "pursued their desires, at great cost to themselves or others",
 		["faithfulness","planning","expert"]],
 //doing - how does the process get done?

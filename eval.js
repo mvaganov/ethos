@@ -134,7 +134,7 @@ var generateSubmissionCalls = function(state, gform){
   var formID = gform.id;
   var submissionType="formResponse";// submit=formResponse, prefilled=viewform
   var postOrigin = "https://docs.google.com/"
-  var submitHead = postOrigin+"forms/d/"+formID+"/"+submissionType+"?";
+  var submitHead = postOrigin+"forms/d/e/"+formID+"/"+submissionType+"?";
   var submissions = [];
   if(state && state.choices){
     for(var i=0;i<state.choices.length;++i){
@@ -156,11 +156,15 @@ var generateSubmissionCalls = function(state, gform){
 }
 
 var rootGForm = {
-//https://docs.google.com/forms/d/
-  id: "1hCZWiPQfjtch8MCB-UNT2LH8zaauOLziF2xOWnqFhUk",
-  tokens:["entry.814950460","entry.1237083921","entry.2073350883",
-  "entry.1376135293","entry.1711808146","entry.973987883","entry.1850534778",
-  "entry.1279235413","entry.856284048"]
+//https://docs.google.com/forms/d/e/
+  // id: "1hCZWiPQfjtch8MCB-UNT2LH8zaauOLziF2xOWnqFhUk", // mvaganov@shschools.org
+  // tokens:["entry.814950460","entry.1237083921","entry.2073350883",
+  // "entry.1376135293","entry.1711808146","entry.973987883","entry.1850534778",
+  // "entry.1279235413","entry.856284048"]
+  id: "1FAIpQLSczAuwPF-WjKHwpGvHn8M8f_WnOpu1iVixOqQhDE1zUI3GgMA", // michael.vaganov@gmail.com
+  tokens:["entry.948797990", "entry.1719623574","entry.1127778923",
+  "entry.494616863","entry.52833480","entry.2049913893","entry.1097716330",
+  "entry.2064015176","entry.427225244"]
 };
 // @returns true if everything was submitted correctly
 var submitGForm = function(state){
