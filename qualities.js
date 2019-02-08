@@ -114,30 +114,45 @@ var DB_valueCategory = {
 		icon:"icons/initiative.png",
 		color:"#ff0000",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(0deg)",
+		philisophicalContext:{
+			expectationStates:"performance expectations"
+		}
 	},
 	"planning": {
 		description:"what shaped a project?",
 		icon:"icons/plan.png",
 		color:"#00ffff",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(180deg) brightness(300%);",
+		philisophicalContext:{
+			expectationStates:"identify action opportunity"
+		}
 	},
 	"doing": {
 		description:"how effort applied to get a project done?",
 		icon:"icons/implement.png",
 		color:"#0000ff",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(240deg)",
+		philisophicalContext:{
+			expectationStates:"performance output"
+		}
 	},
 	"testing": {
 		description:"how is the project tested for success?",
 		icon:"icons/test.png",
 		color:"#ff00ff",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(300deg)",
+		philisophicalContext:{
+			expectationStates:"unit evaluations"
+		}
 	},
 	"review": {
 		description:"how are results of the project considered?",
 		icon:"icons/judgement.png",
 		color:"#00ff00",
 		iconStyle:"filter: invert(1) brightness(50%) sepia(200%) saturate(10000%) hue-rotate(120deg) brightness(300%);",
+		philisophicalContext:{
+			expectationStates:"agreement/disagreement resolution -> influence and expectaitons"
+		}
 	},
 	"achievement": {
 		description:"what are the goals of a project?",
@@ -294,7 +309,7 @@ each pair should:
 	 "was bored and constantly distracted",
 		["knowledge","doing","independent"]],
 	["improved knowledge in a way that simplifed problems",
-	 "over-complicated things",
+	 "over-complicated things, possibly to hide uncertainty",
 		["knowledge","doing","expert"]],
 //testing - how do you check if the process was a success?
 	["had expectations that could be tested",
@@ -518,44 +533,44 @@ each pair should:
 	 "waited for others to demand action before acting",
 		["solidarity","initiative","independent"]],
 	["connected with and inspired people to be their best-selves",
-	 "avoided social investment and discussion with others",
+	 "labeled people to 'put them in their place'",
 		["solidarity","initiative","expert"]],
 //plan - what shapes the process?
-	["found a way to participate as a member of a group",
-	 "refused goals that did not serve them exactly",
+	["found or asked-for (and took) opportunities to participate",
+	 "avoided or rejected goals that did not serve them exactly",
 		["solidarity","planning","familiar"]],
-	["recognized and helped organize people suited for roles",
+	["recognized or suggested roles to organize people",
 	 "gossiped or stereotyped",
 		["solidarity","planning","independent"]],
 	["delegated and empowered others to plan for the group",
-	 "micromanaged or intimidated",
+	 "held on to power, and micromanaged or intimidated",
 		["solidarity","planning","expert"]],
 //doing - how does the process get done?
-	["found guides to help them get their independent work done",
-	 "was counter-productive to other problem solvers",
+	["participated in a group's common culture, working with them",
+	 "witheld help or was counter-productive to others",
 		["solidarity","doing","familiar"]],
-	["gave tutorials or examples showing how to do things",
-	 "didn't share helpful knowledge",
+	["communicated to identify a common goal or develop consensus",
+	 "antagonized people with harsh words or passive-aggression",
 		["solidarity","doing","independent"]],
-	["guided others to their independent success, at cost to self",
-	 "sabatoged others to maintain power",
+	["guided others to independent success at possible cost to self",
+	 "sabatoged or denied others to maintain power or status",
 		["solidarity","doing","expert"]],
 //testing - how do you check if the process was a success?
-	["explained expectations to others",
+	["explained expectation, agreement, and disagreement to others",
 	 "assumed everyone thinks the same thing",
 		["solidarity","testing","familiar"]],
 	["kept others accountable to their commitments",
 	 "distracted others from their commitments",
 		["solidarity","testing","independent"]],
 	["held everyone accountable to future generations",
-	 "failed to consider consequences to future communities",
+	 "failed to consider consequences to others",
 		["solidarity","testing","expert"]],
 //review - a response once test results are in?
-	["assisted others in brainstorming and problem solving", // TODO plan?
-	 "demanded or threatened to get their way",
+	["shared feedback with others to develop common understanding",
+	 "lied or self-victimized for favors or personal gain",
 		["solidarity","review","familiar"]],
 	["shared resources, with fairness and justice in mind",
-	 "lied or self-victimized for favors or personal gain",
+	 "demanded or threatened, to try to get their way",
 		["solidarity","review","independent"]],
 	["gave away ownership so others would better understand results",
 	 "resisted or denied peoples' input for their own ego",
